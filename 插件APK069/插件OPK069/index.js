@@ -16,7 +16,7 @@ AppRegistry.registerConfig([{
     appKey: 'HeadTurn1199',
     component: () => App,
     intent: 'demonstrate_app&open', //例如:'weather&get_weather'
-    //intent: ['smart_library&select_book', 'smart_library&onsultation_guide', 'smart_library&return_book', 'smart_library&borrow_book', 'smart_library&recommended_book', 'smart_library&find_book'], //例如:'海恒客户'
+    //intent: ['apk_demo_show&open_apk', 'smart_library&find_book', 'smart_library&recommended_book'], //例如:'海恒客户'
     appId: appid,
     priority: 1
 }]);

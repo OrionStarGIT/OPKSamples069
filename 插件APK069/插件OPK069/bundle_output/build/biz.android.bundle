@@ -24999,6 +24999,1458 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 },"system_2d01160272669884793b18983a46dcd0_node_modules_scheduler_cjs_scheduler.development.js",[],"node_modules/scheduler/cjs/scheduler.development.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var _exportNames = {
+    NlpPath: true
+  };
+  Object.defineProperty(exports, "NlpPath", {
+    enumerable: true,
+    get: function get() {
+      return _NlpPath.NlpPath;
+    }
+  });
+
+  var _Eve = _$$_REQUIRE(_dependencyMap[0], "./Eve");
+
+  Object.keys(_Eve).forEach(function (key) {
+    if (key === "default" || key === "__esModule") return;
+    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+    if (key in exports && exports[key] === _Eve[key]) return;
+    Object.defineProperty(exports, key, {
+      enumerable: true,
+      get: function get() {
+        return _Eve[key];
+      }
+    });
+  });
+
+  var _AppManager = _$$_REQUIRE(_dependencyMap[1], "./src/robot/api/AppManager");
+
+  Object.keys(_AppManager).forEach(function (key) {
+    if (key === "default" || key === "__esModule") return;
+    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+    if (key in exports && exports[key] === _AppManager[key]) return;
+    Object.defineProperty(exports, key, {
+      enumerable: true,
+      get: function get() {
+        return _AppManager[key];
+      }
+    });
+  });
+
+  var _AppUpdateManager = _$$_REQUIRE(_dependencyMap[2], "./src/robot/api/AppUpdateManager");
+
+  Object.keys(_AppUpdateManager).forEach(function (key) {
+    if (key === "default" || key === "__esModule") return;
+    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+    if (key in exports && exports[key] === _AppUpdateManager[key]) return;
+    Object.defineProperty(exports, key, {
+      enumerable: true,
+      get: function get() {
+        return _AppUpdateManager[key];
+      }
+    });
+  });
+
+  var _RobotSettingApi = _$$_REQUIRE(_dependencyMap[3], "./src/robot/api/RobotSettingApi");
+
+  Object.keys(_RobotSettingApi).forEach(function (key) {
+    if (key === "default" || key === "__esModule") return;
+    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+    if (key in exports && exports[key] === _RobotSettingApi[key]) return;
+    Object.defineProperty(exports, key, {
+      enumerable: true,
+      get: function get() {
+        return _RobotSettingApi[key];
+      }
+    });
+  });
+
+  var _NlpPath = _$$_REQUIRE(_dependencyMap[4], "./src/nlp/path/NlpPath");
+},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts",["orionos-eve-core_Eve.ts","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_AppManager.ts","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_AppUpdateManager.ts","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_RobotSettingApi.ts","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_nlp_path_NlpPath.js"],"node_modules/orionos-eve-core/index.ts");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  exports.DOMImplementation = window.DOMImplementation;
+  exports.XMLSerializer = window.XMLSerializer;
+  exports.DOMParser = window.DOMParser;
+},"system_2d01160272669884793b18983a46dcd0_node_modules_roslib_src_util_shim_@xmldom_xmldom.js",[],"node_modules/roslib/src/util/shim/@xmldom/xmldom.js");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.AppManager = void 0;
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
+
+  var _Initial = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../../Initial"));
+
+  var _Utils = _$$_REQUIRE(_dependencyMap[5], "../../utils/Utils");
+
+  var appManager = _reactNative.NativeModules.AppManager;
+
+  var AppManager = function () {
+    function AppManager() {
+      (0, _classCallCheck2.default)(this, AppManager);
+    }
+
+    (0, _createClass2.default)(AppManager, null, [{
+      key: "getAppJson",
+      value: function getAppJson() {
+        if (this.appId) {
+          if (_Initial.default.isSupportPlugin) {
+            return appManager.getAppJsonByAppId(this.appId);
+          } else {
+            (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+            return '';
+          }
+        } else {
+          try {
+            return appManager.getAppJson();
+          } catch (error) {
+            (0, _Utils.newError)(error);
+            return '';
+          }
+        }
+      }
+    }, {
+      key: "getOpkPath",
+      value: function getOpkPath() {
+        if (this.appId) {
+          if (_Initial.default.isSupportPlugin) {
+            return appManager.getOpkPathByAppId(this.appId);
+          } else {
+            (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+            return '';
+          }
+        } else {
+          try {
+            return appManager.getOpkPath();
+          } catch (error) {
+            (0, _Utils.newError)(error);
+            return '';
+          }
+        }
+      }
+    }, {
+      key: "getOpkExtraPath",
+      value: function getOpkExtraPath() {
+        if (this.appId) {
+          if (_Initial.default.isSupportPlugin) {
+            return appManager.getOpkExtraPathByAppId(this.appId);
+          } else {
+            (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+            return '';
+          }
+        } else {
+          try {
+            return appManager.getOpkExtraPath();
+          } catch (error) {
+            (0, _Utils.newError)(error);
+            return '';
+          }
+        }
+      }
+    }, {
+      key: "getAppId",
+      value: function getAppId() {
+        if (this.appId) {
+          return this.appId;
+        }
+
+        if (_Initial.default.isSupportAppId) {
+          try {
+            var appJson = AppManager.getAppJson();
+
+            if (appJson) {
+              return JSON.parse(appJson).appid;
+            }
+
+            (0, _Utils.newWarn)('getAppId AppJson error');
+            return '';
+          } catch (error) {
+            (0, _Utils.newWarn)(error);
+            return '';
+          }
+        }
+
+        return '';
+      }
+    }, {
+      key: "getAppIcon",
+      value: function getAppIcon() {
+        if (_Initial.default.isSupportPlugin) {
+          return appManager.getAppIcon(this.appId);
+        } else {
+          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+          return '';
+        }
+      }
+    }, {
+      key: "getAppConfig",
+      value: function getAppConfig() {
+        if (_Initial.default.isSupportPlugin) {
+          return appManager.getAppConfig(this.appId);
+        } else {
+          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+          return '';
+        }
+      }
+    }, {
+      key: "setAppConfig",
+      value: function setAppConfig(key, value) {
+        if (_Initial.default.isSupportConfigUpdateNotify && this.appId) {
+          appManager.setAppConfig(this.appId, key, value);
+        } else {
+          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+        }
+      }
+    }, {
+      key: "setConfigUpdateListener",
+      value: function setConfigUpdateListener(onConfigUpdate) {
+        if (_Initial.default.isSupportConfigUpdateNotify && this.appId) {
+          if (this.configUpdate) {
+            this.configUpdate.remove();
+          }
+
+          this.configUpdate = _reactNative.DeviceEventEmitter.addListener('configUpdate_' + this.appId, function (data) {
+            var config = JSON.parse(data);
+            onConfigUpdate(config);
+          });
+        } else {
+          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+          return '';
+        }
+      }
+    }, {
+      key: "setSystemConfigUpdateListener",
+      value: function setSystemConfigUpdateListener(onConfigUpdate) {
+        var systemId = this.getSystemId();
+
+        if (_Initial.default.isSupportConfigUpdateNotify && systemId) {
+          if (this.systemConfigUpdate) {
+            this.systemConfigUpdate.remove();
+          }
+
+          this.systemConfigUpdate = _reactNative.DeviceEventEmitter.addListener('configUpdate_' + systemId, function (data) {
+            var config = JSON.parse(data);
+            onConfigUpdate(config);
+          });
+        } else {
+          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+          return '';
+        }
+      }
+    }, {
+      key: "getSystemId",
+      value: function getSystemId() {
+        if (_Initial.default.isSupportSystemId) {
+          return appManager.getSystemId();
+        } else {
+          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+          return '';
+        }
+      }
+    }, {
+      key: "restartApp",
+      value: function restartApp() {
+        if (_Initial.default.isSupportPlugin) {
+          appManager.restartApp(this.appId);
+        } else {
+          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+        }
+      }
+    }, {
+      key: "startApp",
+      value: function startApp(appId) {
+        if (_Initial.default.isSupportNlpParser) {
+          appManager.startApp(appId);
+        } else {
+          var msg = 'The device does not support startApp API.';
+          (0, _Utils.newError)(msg);
+        }
+      }
+    }, {
+      key: "destroyApp",
+      value: function destroyApp(appId) {
+        if (_Initial.default.isSupportNlpParser) {
+          appManager.destroyApp(appId);
+        } else {
+          var msg = 'The device does not support destroyApp API.';
+          (0, _Utils.newWarn)(msg);
+        }
+      }
+    }, {
+      key: "moveToForeground",
+      value: function moveToForeground(appId) {
+        if (_Initial.default.isSupportNlpParser) {
+          appManager.moveToForeground(appId);
+        } else {
+          var msg = 'The device does not support moveToForeground API.';
+          (0, _Utils.newWarn)(msg);
+        }
+      }
+    }, {
+      key: "moveToBack",
+      value: function moveToBack(appId) {
+        if (_Initial.default.isSupportNlpParser) {
+          appManager.moveToBack(appId);
+        } else {
+          var msg = 'The device does not support moveToBack API.';
+          (0, _Utils.newWarn)(msg);
+        }
+      }
+    }, {
+      key: "setAppPath",
+      value: function setAppPath(appId, path) {
+        if (_Initial.default.isSupportNlpParser) {
+          appManager.setAppPath(appId, path);
+        } else {
+          var msg = 'The device does not support setAppPath API.';
+          (0, _Utils.newError)(msg);
+        }
+      }
+    }, {
+      key: "setAppVersion",
+      value: function setAppVersion(appId, version) {
+        var msg = 'The device does not support setAppVersion API.';
+        (0, _Utils.newWarn)(msg);
+      }
+    }, {
+      key: "setAppInfo",
+      value: function setAppInfo(appId, path, subPage, version) {
+        if (_Initial.default.isSupportNlpParser) {
+          if (appId) {
+            appManager.setAsyncCustomNlpData('opt_scene_switch', JSON.stringify({
+              app_id: appId,
+              path: path == undefined ? '' : path,
+              subPage: subPage == undefined ? '' : subPage,
+              version: version == undefined ? '' : version
+            }));
+          } else {
+            var msg = 'nlp_launcher_:setAppInfo appId is null';
+            (0, _Utils.newError)(msg);
+          }
+        } else {
+          var _msg = 'The device does not support setAsyncCustomNlpData API.';
+          (0, _Utils.newError)(_msg);
+        }
+      }
+    }]);
+    return AppManager;
+  }();
+
+  exports.AppManager = AppManager;
+  AppManager.appId = null;
+},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_AppManager.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","orionos-eve-core_src_Initial.ts","orionos-eve-core_src_utils_Utils.ts"],"node_modules/orionos-eve-core/src/robot/api/AppManager.ts");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.TriggerType = exports.Trigger = void 0;
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/createClass"));
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/classCallCheck"));
+
+  var _Crash = _$$_REQUIRE(_dependencyMap[3], "./utils/Crash");
+
+  var _NativeApi = _$$_REQUIRE(_dependencyMap[4], "./robot/api/NativeApi");
+
+  var _EmojiPlayerModel = _$$_REQUIRE(_dependencyMap[5], "./models/EmojiPlayerModel");
+
+  var _NlpScene = _$$_REQUIRE(_dependencyMap[6], "./nlp/scene/NlpScene");
+
+  var _TriggerManager = _$$_REQUIRE(_dependencyMap[7], "./TriggerManager");
+
+  var TriggerType;
+  exports.TriggerType = TriggerType;
+
+  (function (TriggerType) {
+    TriggerType[TriggerType["api"] = 1] = "api";
+    TriggerType[TriggerType["voice"] = 2] = "voice";
+    TriggerType[TriggerType["ui"] = 3] = "ui";
+    TriggerType[TriggerType["deepLink"] = 4] = "deepLink";
+  })(TriggerType || (exports.TriggerType = TriggerType = {}));
+
+  var Trigger = (0, _createClass2.default)(function Trigger(channel) {
+    var _this = this;
+
+    (0, _classCallCheck2.default)(this, Trigger);
+    this.appId = null;
+
+    this.getChannel = function () {
+      return _this._channel;
+    };
+
+    this.dispatch = function (data) {
+      data.eventId = data.eventId || -1;
+
+      _this.trigger(data);
+    };
+
+    this.goBack = function (data) {
+      if (_TriggerManager.triggerManager.type === _TriggerManager.TriggerNavigate.stackNavigate) {
+        _TriggerManager.triggerManager.getNavigation().goBack();
+
+        return;
+      }
+
+      var stackInfo = _TriggerManager.triggerManager.popRouteName();
+
+      if (stackInfo) {
+        data.result = stackInfo.protocol && stackInfo.protocol.result;
+        data.goBack = true;
+
+        _this._trigger(stackInfo.name, data);
+      }
+    };
+
+    this._trigger = function (router, data) {
+      var goBack = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+      var navigation = _TriggerManager.triggerManager.getNavigation();
+
+      var current = navigation.state;
+      data.channel = current.routeName;
+      console.log('caller: ', _this._channel, current, data);
+
+      _Crash.Crash.putCurrentScenesState({
+        Name: router
+      });
+
+      _NlpScene.NlpScene.switchScene(router);
+
+      if (_TriggerManager.triggerManager.middleware) {
+        _TriggerManager.triggerManager.middleware(current.routeName, router, data);
+      }
+
+      if (_TriggerManager.triggerManager.type === _TriggerManager.TriggerNavigate.replaceNavigate) {
+        navigation.replace(router, data);
+      } else {
+        navigation.navigate(router, data);
+      }
+
+      if (data.goBack !== true) {
+        if (data.channel !== router) {
+          var existRoute = _TriggerManager.triggerManager.isRouteExistInStack(router);
+
+          if (existRoute) {
+            _TriggerManager.triggerManager.popTo(router);
+          } else {
+            if (data.putStack !== false) {
+              _TriggerManager.triggerManager.pushRouteName(data.channel, data);
+            }
+          }
+        }
+      }
+
+      _this.navSwitch(data.channel, router);
+    };
+
+    this.stopTTS = function () {
+      _NativeApi.speechApi.stopTTS();
+    };
+
+    this.playTextWithEmoji = function (listenerId, text) {
+      _EmojiPlayerModel.emojiPlayerModel.setShow(true);
+
+      _NativeApi.speechApi.playText(listenerId, text);
+    };
+
+    if (this.appId) {
+      this._channel = this.appId + '_' + channel;
+    } else {
+      this._channel = channel;
+    }
+
+    _TriggerManager.triggerManager.addTrigger(this);
+  });
+  exports.Trigger = Trigger;
+},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_Trigger.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_classCallCheck.js","orionos-eve-core_src_utils_Crash.ts","orionos-eve-core_src_robot_api_NativeApi.ts","orionos-eve-core_src_models_EmojiPlayerModel.ts","orionos-eve-core_src_nlp_scene_NlpScene.ts","orionos-eve-core_src_TriggerManager.ts"],"node_modules/orionos-eve-core/src/Trigger.ts");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.MsgPushType = exports.MsgPushManager = void 0;
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
+
+  var _ = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[4], "lodash"));
+
+  var _Utils = _$$_REQUIRE(_dependencyMap[5], "../../utils/Utils");
+
+  var _Initial = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "../../Initial"));
+
+  function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+  function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+  var messagePushApi = _reactNative.NativeModules.MsgPushManager;
+  var MsgPushType;
+  exports.MsgPushType = MsgPushType;
+
+  (function (MsgPushType) {
+    MsgPushType[MsgPushType["APP_OBTAIN"] = 1] = "APP_OBTAIN";
+    MsgPushType[MsgPushType["BOOT_RECOMMEND"] = 2] = "BOOT_RECOMMEND";
+    MsgPushType[MsgPushType["OTA_RECOMMEND"] = 3] = "OTA_RECOMMEND";
+  })(MsgPushType || (exports.MsgPushType = MsgPushType = {}));
+
+  var MsgPushManager = function () {
+    function MsgPushManager() {
+      (0, _classCallCheck2.default)(this, MsgPushManager);
+    }
+
+    (0, _createClass2.default)(MsgPushManager, null, [{
+      key: "getMessages",
+      value: function getMessages() {
+        var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : MsgPushType.APP_OBTAIN;
+        var appId = arguments.length > 1 ? arguments[1] : undefined;
+        var appPath = arguments.length > 2 ? arguments[2] : undefined;
+
+        if (_Initial.default.msgControlVer > 0) {
+          return messagePushApi.getMessages(type, appId, appPath);
+        } else {
+          (0, _Utils.newError)('Your ModuleApp do not support getMessages');
+          return '';
+        }
+      }
+    }, {
+      key: "getMessageContent",
+      value: function getMessageContent(msgId) {
+        if (_Initial.default.msgControlVer > 0) {
+          return messagePushApi.getMessageContent(msgId);
+        } else {
+          (0, _Utils.newError)('Your ModuleApp do not support getMessageContent');
+          return '';
+        }
+      }
+    }, {
+      key: "getDetail",
+      value: function getDetail(detailId) {
+        if (_Initial.default.msgControlVer > 1) {
+          return messagePushApi.getDetail(detailId);
+        } else {
+          (0, _Utils.newError)('Your ModuleApp do not support getDetail');
+          return '';
+        }
+      }
+    }, {
+      key: "increaseDetailPlayTimes",
+      value: function increaseDetailPlayTimes(detailId) {
+        if (_Initial.default.msgControlVer > 1) {
+          messagePushApi.increaseDetailPlayTimes(detailId);
+        } else {
+          (0, _Utils.newError)('Your ModuleApp do not support increaseDetailPlayTimes');
+        }
+      }
+    }, {
+      key: "deleteDetail",
+      value: function deleteDetail(detailId) {
+        if (_Initial.default.msgControlVer > 1) {
+          messagePushApi.deleteDetail(detailId);
+        } else {
+          (0, _Utils.newError)('Your ModuleApp do not support deleteDetail');
+        }
+      }
+    }, {
+      key: "registerMsgChanged",
+      value: function registerMsgChanged(callbackId, type, appId, appPath) {
+        if (_Initial.default.msgControlVer > 0) {
+          if (!_.isNumber(callbackId) || callbackId < 0) {
+            (0, _Utils.newError)('MsgPushListener callbackId must be validate.');
+          } else {
+            messagePushApi.registerMsgChanged(callbackId, type, appId, appPath);
+          }
+        } else {
+          (0, _Utils.newError)('Your ModuleApp do not support monitor msg push changes.');
+        }
+      }
+    }, {
+      key: "unregisterMsgChanged",
+      value: function unregisterMsgChanged(callbackId) {
+        if (_Initial.default.msgControlVer > 0) {
+          if (!_.isNumber(callbackId) || callbackId < 0) {
+            (0, _Utils.newError)('MsgPushListener callbackId must be validate.');
+          } else {
+            messagePushApi.unregisterMsgChanged(callbackId);
+          }
+        } else {
+          (0, _Utils.newError)('Your ModuleApp do not support monitor msg push changes.');
+        }
+      }
+    }]);
+    return MsgPushManager;
+  }();
+
+  exports.MsgPushManager = MsgPushManager;
+},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_MsgPushManager.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","node_modules_lodash_lodash.js","orionos-eve-core_src_utils_Utils.ts","orionos-eve-core_src_Initial.ts"],"node_modules/orionos-eve-core/src/robot/api/MsgPushManager.ts");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.BaseViewModel = void 0;
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/createClass"));
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/classCallCheck"));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
+
+  var _Trigger = _$$_REQUIRE(_dependencyMap[4], "./Trigger");
+
+  var _RecognitionModel = _$$_REQUIRE(_dependencyMap[5], "./models/RecognitionModel");
+
+  var _EmojiPlayerModel = _$$_REQUIRE(_dependencyMap[6], "./models/EmojiPlayerModel");
+
+  var _FaceParticleModel = _$$_REQUIRE(_dependencyMap[7], "./models/FaceParticleModel");
+
+  var BaseViewModel = (0, _createClass2.default)(function BaseViewModel(channel) {
+    var _this = this;
+
+    (0, _classCallCheck2.default)(this, BaseViewModel);
+    this.recognitionStore = _RecognitionModel.recognitionModel;
+    this.emojiPlayerStore = _EmojiPlayerModel.emojiPlayerModel;
+    this.faceParticleStore = _FaceParticleModel.faceParticleModel;
+    this.appId = null;
+
+    this.setVoice = function (voice) {
+      _this._voice = voice;
+      _this._voice && _this._voice.start();
+      return _this;
+    };
+
+    this.setSpeakInfoMap = function (speakInfoMap) {
+      if (_this._voice) {
+        _this._voice.setSpeakInfoMap(speakInfoMap);
+      }
+    };
+
+    this.updateSpeakInfo = function (speakInfo) {
+      if (_this._voice) {
+        _this._voice.updateSpeakInfo(speakInfo);
+      }
+    };
+
+    this.setView = function (view) {
+      _this._view = view;
+      return _this;
+    };
+
+    this.getChannel = function () {
+      return _this._channel;
+    };
+
+    this._trigger = function (type, eventId, data) {
+      var protocol = {
+        channel: _this._channel,
+        eventId: eventId,
+        type: type,
+        result: data
+      };
+      console.log('trigger: ', protocol);
+
+      _reactNative.DeviceEventEmitter.emit('__trigger__', protocol);
+    };
+
+    this._uiTrigger = function (eventId, data) {
+      _this._trigger(_Trigger.TriggerType.ui, eventId, data);
+    };
+
+    this._voiceTrigger = function (eventId, data, queryType) {
+      if (queryType === 2) {
+        _this._trigger(_Trigger.TriggerType.ui, eventId, data);
+      } else {
+        _this._trigger(_Trigger.TriggerType.voice, eventId, data);
+      }
+    };
+
+    this._apiTrigger = function (eventId, data) {
+      _this._trigger(_Trigger.TriggerType.api, eventId, data);
+    };
+
+    this.start = function () {
+      if (_this.status === 'stop') {
+        _this.status = 'start';
+        _this._voice && _this._voice.start();
+
+        _this.onStart();
+      }
+    };
+
+    this.stop = function () {
+      if (_this.status === 'start') {
+        _this.status = 'stop';
+        _this._voice && _this._voice.stop();
+
+        _this.onStop();
+
+        _this._voice = undefined;
+        _this._view = undefined;
+      }
+    };
+
+    this.showEmojiPlayer = function () {
+      _this.emojiPlayerStore.setShow(true);
+    };
+
+    this.hideEmojiPlayer = function () {
+      _this.emojiPlayerStore.setShow(false);
+    };
+
+    this.startEmojiTalk = function () {
+      _this.emojiPlayerStore.setTalk(true);
+    };
+
+    this.stopEmojiTalk = function () {
+      _this.emojiPlayerStore.setTalk(false);
+    };
+
+    this.showRecognition = function () {
+      _this.recognitionStore.setShow(true);
+    };
+
+    this.hideRecognition = function () {
+      _this.recognitionStore.setShow(false);
+    };
+
+    this.showFaceParticle = function () {
+      _this.faceParticleStore.setHide(false);
+    };
+
+    this.hideFaceParticle = function () {
+      _this.faceParticleStore.setHide(true);
+    };
+
+    this.showEyeCenter = function () {
+      _this.faceParticleStore.setShowCenter(true);
+    };
+
+    this.showEyeLeft = function () {
+      _this.faceParticleStore.setShowCenter(false);
+    };
+
+    this.showBackgroundStar = function () {
+      _this.faceParticleStore.setShowStar(true);
+    };
+
+    this.hideBackgroundStar = function () {
+      _this.faceParticleStore.setShowStar(false);
+    };
+
+    if (this.appId) {
+      this._channel = this.appId + '_' + channel;
+    } else {
+      this._channel = channel;
+    }
+
+    this.status = 'stop';
+  });
+  exports.BaseViewModel = BaseViewModel;
+},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_BaseViewModel.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_Trigger.ts","orionos-eve-core_src_models_RecognitionModel.ts","orionos-eve-core_src_models_EmojiPlayerModel.ts","orionos-eve-core_src_models_FaceParticleModel.ts"],"node_modules/orionos-eve-core/src/BaseViewModel.ts");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.NavigationTransferComponent = void 0;
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/inherits"));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/possibleConstructorReturn"));
+
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/getPrototypeOf"));
+
+  var _BaseRobotComponent2 = _$$_REQUIRE(_dependencyMap[6], "./BaseRobotComponent");
+
+  var _Utils = _$$_REQUIRE(_dependencyMap[7], "../../utils/Utils");
+
+  var _Initial = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8], "../../Initial"));
+
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+  var sprintf = _$$_REQUIRE(_dependencyMap[9], "sprintf-js").sprintf;
+
+  var COMPONENT_NATIVE_BRIDGE_NAME = 'NavigationTransfer';
+
+  var NavigationTransferComponent = function (_BaseRobotComponent) {
+    (0, _inherits2.default)(NavigationTransferComponent, _BaseRobotComponent);
+
+    var _super = _createSuper(NavigationTransferComponent);
+
+    function NavigationTransferComponent(props) {
+      var _this;
+
+      (0, _classCallCheck2.default)(this, NavigationTransferComponent);
+      _this = _super.call(this, props);
+
+      if (_Initial.default.multiRobotNavigationVer <= 0) {
+        (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+      }
+
+      return _this;
+    }
+
+    (0, _createClass2.default)(NavigationTransferComponent, [{
+      key: "getComponentParam",
+      value: function getComponentParam() {
+        return this.props.param;
+      }
+    }, {
+      key: "generateComponentInfo",
+      value: function generateComponentInfo() {
+        return new _BaseRobotComponent2.RobotComponentInfo(COMPONENT_NATIVE_BRIDGE_NAME, (0, _Utils.getuuid)(), true, true, true, [_BaseRobotComponent2.ResouceType.Navigation]);
+      }
+    }]);
+    return NavigationTransferComponent;
+  }(_BaseRobotComponent2.BaseRobotComponent);
+
+  exports.NavigationTransferComponent = NavigationTransferComponent;
+},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_components_NavigationTransferComponent.tsx",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","orionos-eve-core_src_robot_components_BaseRobotComponent.tsx","orionos-eve-core_src_utils_Utils.ts","orionos-eve-core_src_Initial.ts","node_modules_sprintf-js_src_sprintf.js"],"node_modules/orionos-eve-core/src/robot/components/NavigationTransferComponent.tsx");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.NavigationCheckComponent = void 0;
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/inherits"));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/possibleConstructorReturn"));
+
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/getPrototypeOf"));
+
+  var _BaseRobotComponent2 = _$$_REQUIRE(_dependencyMap[6], "./BaseRobotComponent");
+
+  var _Utils = _$$_REQUIRE(_dependencyMap[7], "../../utils/Utils");
+
+  var _Initial = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8], "../../Initial"));
+
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+  var sprintf = _$$_REQUIRE(_dependencyMap[9], "sprintf-js").sprintf;
+
+  var COMPONENT_NATIVE_BRIDGE_NAME = 'NavigationCheck';
+
+  var NavigationCheckComponent = function (_BaseRobotComponent) {
+    (0, _inherits2.default)(NavigationCheckComponent, _BaseRobotComponent);
+
+    var _super = _createSuper(NavigationCheckComponent);
+
+    function NavigationCheckComponent(props) {
+      var _this;
+
+      (0, _classCallCheck2.default)(this, NavigationCheckComponent);
+      _this = _super.call(this, props);
+
+      if (_Initial.default.multiRobotNavigationVer <= 0) {
+        (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+      }
+
+      return _this;
+    }
+
+    (0, _createClass2.default)(NavigationCheckComponent, [{
+      key: "getComponentParam",
+      value: function getComponentParam() {
+        return this.props.param;
+      }
+    }, {
+      key: "generateComponentInfo",
+      value: function generateComponentInfo() {
+        return new _BaseRobotComponent2.RobotComponentInfo(COMPONENT_NATIVE_BRIDGE_NAME, (0, _Utils.getuuid)(), true, true, false, [_BaseRobotComponent2.ResouceType.Navigation]);
+      }
+    }]);
+    return NavigationCheckComponent;
+  }(_BaseRobotComponent2.BaseRobotComponent);
+
+  exports.NavigationCheckComponent = NavigationCheckComponent;
+},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_components_NavigationCheckComponent.tsx",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","orionos-eve-core_src_robot_components_BaseRobotComponent.tsx","orionos-eve-core_src_utils_Utils.ts","orionos-eve-core_src_Initial.ts","node_modules_sprintf-js_src_sprintf.js"],"node_modules/orionos-eve-core/src/robot/components/NavigationCheckComponent.tsx");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.RobotMapManager = void 0;
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
+
+  var _Initial = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../../Initial"));
+
+  var _Utils = _$$_REQUIRE(_dependencyMap[5], "../../utils/Utils");
+
+  var robotMapManager = _reactNative.NativeModules.MapManager;
+
+  var RobotMapManager = function () {
+    function RobotMapManager() {
+      (0, _classCallCheck2.default)(this, RobotMapManager);
+    }
+
+    (0, _createClass2.default)(RobotMapManager, null, [{
+      key: "t9Search",
+      value: function t9Search(query) {
+        if (_Initial.default.mapControlVer > 0) {
+          return robotMapManager.t9Search(query);
+        } else {
+          var msg = 'The device does not support t9Search API.';
+          (0, _Utils.newError)(msg);
+          return '';
+        }
+      }
+    }]);
+    return RobotMapManager;
+  }();
+
+  exports.RobotMapManager = RobotMapManager;
+},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_RobotMapManager.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","orionos-eve-core_src_Initial.ts","orionos-eve-core_src_utils_Utils.ts"],"node_modules/orionos-eve-core/src/robot/api/RobotMapManager.ts");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.TaskEvent = void 0;
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/createClass"));
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/classCallCheck"));
+
+  var TaskEvent = (0, _createClass2.default)(function TaskEvent(taskId, taskData, eventType, eventData, subTaskId, subTaskType, subTaskData, isCreateOnStart) {
+    (0, _classCallCheck2.default)(this, TaskEvent);
+    this.taskId = taskId;
+    this.taskData = taskData;
+    this.eventType = eventType;
+    this.eventData = eventData;
+    this.subTaskId = subTaskId;
+    this.subTaskType = subTaskType;
+    this.subTaskData = subTaskData;
+    this.isCreateOnStart = isCreateOnStart;
+    this.taskId = taskId;
+    this.taskData = taskData;
+    this.eventType = eventType;
+    this.eventData = eventData;
+    this.subTaskId = subTaskId;
+    this.subTaskType = subTaskType;
+    this.subTaskData = subTaskData;
+    this.isCreateOnStart = isCreateOnStart;
+  });
+  exports.TaskEvent = TaskEvent;
+},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_definition_RobotApiParam.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_classCallCheck.js"],"node_modules/orionos-eve-core/src/robot/api/definition/RobotApiParam.ts");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.MsgPushListener = void 0;
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/createClass"));
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/classCallCheck"));
+
+  var _assertThisInitialized2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/assertThisInitialized"));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/inherits"));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/possibleConstructorReturn"));
+
+  var _get2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "@babel/runtime/helpers/get"));
+
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "@babel/runtime/helpers/getPrototypeOf"));
+
+  var _BaseListener2 = _$$_REQUIRE(_dependencyMap[8], "./BaseListener");
+
+  var _ListenerManager = _$$_REQUIRE(_dependencyMap[9], "../ListenerManager");
+
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+  var MsgPushListener = function (_BaseListener) {
+    (0, _inherits2.default)(MsgPushListener, _BaseListener);
+
+    var _super = _createSuper(MsgPushListener);
+
+    function MsgPushListener() {
+      var _thisSuper, _this;
+
+      (0, _classCallCheck2.default)(this, MsgPushListener);
+      _this = _super.call(this, _ListenerManager.listenersManager.msgPushListenerManager);
+
+      _this.onMsgChanged = function (callback) {
+        (0, _get2.default)((_thisSuper = (0, _assertThisInitialized2.default)(_this), (0, _getPrototypeOf2.default)(MsgPushListener.prototype)), "addListener", _thisSuper).call(_thisSuper, MsgPushListener.EVENT_ON_MSG_CHANGED, callback);
+      };
+
+      return _this;
+    }
+
+    return (0, _createClass2.default)(MsgPushListener);
+  }(_BaseListener2.BaseListener);
+
+  exports.MsgPushListener = MsgPushListener;
+  MsgPushListener.EVENT_ON_MSG_CHANGED = 'onMsgPushChanged';
+},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_listener_MsgPushListener.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_assertThisInitialized.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_get.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","orionos-eve-core_src_robot_listener_BaseListener.ts","orionos-eve-core_src_robot_ListenerManager.ts"],"node_modules/orionos-eve-core/src/robot/listener/MsgPushListener.ts");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.AppUpdateManager = void 0;
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
+
+  var _Initial = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../../Initial"));
+
+  var _Utils = _$$_REQUIRE(_dependencyMap[5], "../../utils/Utils");
+
+  var updateManager = _reactNative.NativeModules.AppUpdateManager;
+
+  var AppUpdateManager = function () {
+    function AppUpdateManager() {
+      (0, _classCallCheck2.default)(this, AppUpdateManager);
+    }
+
+    (0, _createClass2.default)(AppUpdateManager, null, [{
+      key: "isInitInstall",
+      value: function isInitInstall() {
+        if (_Initial.default.isSupportPlugin) {
+          return updateManager.isInitInstall(this.appId);
+        } else {
+          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+          return false;
+        }
+      }
+    }, {
+      key: "isUpdating",
+      value: function isUpdating() {
+        if (_Initial.default.isSupportPlugin) {
+          return updateManager.isUpdating(this.appId);
+        } else {
+          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+          return false;
+        }
+      }
+    }, {
+      key: "checkUpdate",
+      value: function checkUpdate() {
+        if (_Initial.default.isSupportPlugin) {
+          return updateManager.checkUpdate(this.appId);
+        } else {
+          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+          return false;
+        }
+      }
+    }, {
+      key: "setUpdateEnable",
+      value: function setUpdateEnable(enable) {
+        if (_Initial.default.isSupportDisableUpdate) {
+          updateManager.setUpdateEnable(this.appId, enable);
+        } else {
+          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+        }
+      }
+    }, {
+      key: "setUpdateListener",
+      value: function setUpdateListener(updateStatus, updateResult) {
+        if (!_Initial.default.isSupportPlugin) {
+          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+          return;
+        }
+
+        if (this.updateProgress) {
+          this.updateProgress.remove();
+        }
+
+        this.updateProgress = _reactNative.DeviceEventEmitter.addListener('updateProgress', function (data) {
+          var status = JSON.parse(data);
+          updateStatus(status.count, status.index, status.appName, status.oper);
+        });
+
+        if (this.updateResult) {
+          this.updateResult.remove();
+        }
+
+        this.updateResult = _reactNative.DeviceEventEmitter.addListener('updateResult', function (data) {
+          var result = JSON.parse(data);
+          updateResult(result.result, result.message);
+        });
+        updateManager.setUpdateListener();
+      }
+    }, {
+      key: "startUpdate",
+      value: function startUpdate() {
+        if (_Initial.default.isSupportPlugin) {
+          updateManager.startUpdate(this.appId);
+        } else {
+          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+        }
+      }
+    }, {
+      key: "retryUpdate",
+      value: function retryUpdate() {
+        if (_Initial.default.isSupportPlugin) {
+          updateManager.retryUpdate(this.appId);
+        } else {
+          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+        }
+      }
+    }, {
+      key: "cancelUpdate",
+      value: function cancelUpdate() {
+        if (_Initial.default.isSupportPlugin) {
+          updateManager.cancelUpdate(this.appId);
+        } else {
+          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
+        }
+      }
+    }]);
+    return AppUpdateManager;
+  }();
+
+  exports.AppUpdateManager = AppUpdateManager;
+  AppUpdateManager.appId = null;
+},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_AppUpdateManager.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","orionos-eve-core_src_Initial.ts","orionos-eve-core_src_utils_Utils.ts"],"node_modules/orionos-eve-core/src/robot/api/AppUpdateManager.ts");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.RobotSettingApi = void 0;
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
+
+  var _Initial = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../../Initial"));
+
+  var _Utils = _$$_REQUIRE(_dependencyMap[5], "../../utils/Utils");
+
+  var robotSettingApi = _reactNative.NativeModules.RobotSettingApi;
+
+  var RobotSettingApi = function () {
+    function RobotSettingApi() {
+      (0, _classCallCheck2.default)(this, RobotSettingApi);
+    }
+
+    (0, _createClass2.default)(RobotSettingApi, null, [{
+      key: "getRobotString",
+      value: function getRobotString(key) {
+        if (_Initial.default.isSupportRobotSettingApi) {
+          return robotSettingApi.getRobotString(key);
+        } else {
+          var msg = 'This system version does not support getRobotString.';
+          (0, _Utils.newError)(msg);
+          return Promise.reject(msg);
+        }
+      }
+    }, {
+      key: "getRobotFloat",
+      value: function getRobotFloat(key) {
+        if (_Initial.default.isSupportRobotSettingApi) {
+          return robotSettingApi.getRobotFloat(key);
+        } else {
+          var msg = 'This system version does not support getRobotFloat.';
+          (0, _Utils.newError)(msg);
+          return Promise.reject(msg);
+        }
+      }
+    }, {
+      key: "getRobotInt",
+      value: function getRobotInt(key) {
+        if (_Initial.default.isSupportRobotSettingApi) {
+          return robotSettingApi.getRobotInt(key);
+        } else {
+          var msg = 'This system version does not support getRobotInt.';
+          (0, _Utils.newError)(msg);
+          return Promise.reject(msg);
+        }
+      }
+    }, {
+      key: "setRobotString",
+      value: function setRobotString(key, value) {
+        if (_Initial.default.isSupportRobotSettingApi) {
+          if (this.appId && _Initial.default.isSupportRobotSettingPermission) {
+            robotSettingApi.setRobotString(this.appId, key, value);
+          } else {
+            robotSettingApi.setRobotString(key, value);
+          }
+        } else {
+          (0, _Utils.newError)('This system version does not support setRobotString.');
+        }
+      }
+    }, {
+      key: "setRobotFloat",
+      value: function setRobotFloat(key, value) {
+        if (_Initial.default.isSupportRobotSettingApi) {
+          if (this.appId && _Initial.default.isSupportRobotSettingPermission) {
+            robotSettingApi.setRobotFloat(this.appId, key, value);
+          } else {
+            robotSettingApi.setRobotFloat(key, value);
+          }
+        } else {
+          (0, _Utils.newError)('This system version does not support setRobotFloat.');
+        }
+      }
+    }, {
+      key: "setRobotInt",
+      value: function setRobotInt(key, value) {
+        if (_Initial.default.isSupportRobotSettingApi) {
+          if (this.appId && _Initial.default.isSupportRobotSettingPermission) {
+            robotSettingApi.setRobotInt(this.appId, key, value);
+          } else {
+            robotSettingApi.setRobotInt(key, value);
+          }
+        } else {
+          (0, _Utils.newError)('This system version does not support setRobotInt.');
+        }
+      }
+    }, {
+      key: "registerRobotSettingListener",
+      value: function registerRobotSettingListener(callbackId, keys) {
+        if (_Initial.default.isSupportRobotSettingApi) {
+          robotSettingApi.registerRobotSettingListener(callbackId, keys);
+        } else {
+          (0, _Utils.newError)('This system version does not support registerRobotSettingListener.');
+        }
+      }
+    }, {
+      key: "unRegisterRobotSettingListener",
+      value: function unRegisterRobotSettingListener(callbackId) {
+        if (_Initial.default.isSupportRobotSettingApi) {
+          robotSettingApi.unRegisterRobotSettingListener(callbackId);
+        } else {
+          (0, _Utils.newError)('This system version does not support unRegisterRobotSettingListener.');
+        }
+      }
+    }, {
+      key: "isCharging",
+      value: function isCharging() {
+        if (_Initial.default.robotSettingApiVersion >= 1) {
+          return robotSettingApi.isCharging();
+        } else {
+          var msg = 'This system version does not support isCharging.';
+          (0, _Utils.newError)(msg);
+          return Promise.reject(msg);
+        }
+      }
+    }, {
+      key: "clearSettingsListener",
+      value: function clearSettingsListener() {
+        if (_Initial.default.robotSettingApiVersion >= 1) {
+          robotSettingApi.clearSettingsListener();
+        } else {
+          (0, _Utils.newError)('This system version does not support unRegisterRobotSettingListener.');
+        }
+      }
+    }]);
+    return RobotSettingApi;
+  }();
+
+  exports.RobotSettingApi = RobotSettingApi;
+  RobotSettingApi.appId = null;
+},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_RobotSettingApi.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","orionos-eve-core_src_Initial.ts","orionos-eve-core_src_utils_Utils.ts"],"node_modules/orionos-eve-core/src/robot/api/RobotSettingApi.ts");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.NlpPath = NlpPath;
+
+  var _extends2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/extends"));
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/createClass"));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/inherits"));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/possibleConstructorReturn"));
+
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "@babel/runtime/helpers/getPrototypeOf"));
+
+  var _react = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "react"));
+
+  var _AppManager = _$$_REQUIRE(_dependencyMap[8], "../../robot/api/AppManager");
+
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+  var TAG = 'NlpPath';
+
+  var appId = _AppManager.AppManager.getAppId();
+
+  var defaultPath = 'main';
+  var path = null;
+
+  function setPath(pathName, action) {
+    console.log(TAG, 'Set path : ' + pathName + '   ' + action + '   ' + appId);
+
+    _AppManager.AppManager.setAppInfo(appId, pathName);
+
+    if (action) {
+      action.start();
+    }
+  }
+
+  function onPathMount(pathName, action) {
+    console.log(TAG, 'On path mount : ' + pathName + '   ' + action + '   ' + appId);
+    var prePath = path;
+    path = {
+      pathName: pathName,
+      action: action,
+      pre: prePath
+    };
+    setPath(pathName, action);
+  }
+
+  function onPathUnmount(pathName, action) {
+    console.log(TAG, 'On path unmount : ' + pathName);
+
+    if (action) {
+      action.stop();
+    }
+
+    if (path.pre && path.pre.pathName === pathName) {
+      path.pre = path.pre.pre;
+      return;
+    }
+
+    if (path.pathName === pathName) {
+      if (path.pre) {
+        path = path.pre;
+        setPath(path.pathName, path.action);
+      } else {
+        setPath(defaultPath);
+      }
+    }
+  }
+
+  var NlpViewPath = function (_React$Component) {
+    (0, _inherits2.default)(NlpViewPath, _React$Component);
+
+    var _super = _createSuper(NlpViewPath);
+
+    function NlpViewPath(props) {
+      var _this;
+
+      (0, _classCallCheck2.default)(this, NlpViewPath);
+      _this = _super.call(this, props);
+      _this.pathName = _this.props.pathName;
+      _this.action = _this.props.action;
+      return _this;
+    }
+
+    (0, _createClass2.default)(NlpViewPath, [{
+      key: "componentWillMount",
+      value: function componentWillMount() {
+        onPathMount(this.pathName, this.action);
+      }
+    }, {
+      key: "componentWillUnmount",
+      value: function componentWillUnmount() {
+        onPathUnmount(this.pathName, this.action);
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        return _react.default.createElement(_react.default.Fragment, null, this.props.children);
+      }
+    }]);
+    return NlpViewPath;
+  }(_react.default.Component);
+
+  function decoratorViewPath(target, name, descriptor, pathName, action) {
+    console.log('NlpPath view ********** : ' + pathName);
+    var old = descriptor.value;
+
+    descriptor.value = function () {
+      for (var _len = arguments.length, arg = new Array(_len), _key = 0; _key < _len; _key++) {
+        arg[_key] = arguments[_key];
+      }
+
+      var result = old.apply(this, arg);
+      return _react.default.createElement(NlpViewPath, (0, _extends2.default)({}, arg, {
+        pathName: pathName,
+        action: action
+      }), result);
+    };
+  }
+
+  function decoratorPath(target, pathName, action) {
+    console.log('NlpPath class ********** : ' + pathName);
+    var targetWM = target.prototype.componentWillMount;
+
+    target.prototype.componentWillMount = function () {
+      targetWM && targetWM.call(this);
+      onPathMount(pathName, action);
+    };
+
+    var targetWUM = target.prototype.componentWillUnmount;
+
+    target.prototype.componentWillUnmount = function () {
+      targetWUM && targetWUM.call(this);
+      onPathUnmount(pathName, action);
+    };
+  }
+
+  function NlpPath(pathName) {
+    var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    var taskFlow = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+    return function (target, name, descriptor) {
+      if (descriptor) {
+        decoratorViewPath(target, name, descriptor, pathName, action);
+      } else {
+        decoratorPath(target, pathName, action);
+      }
+    };
+  }
+},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_nlp_path_NlpPath.js",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_extends.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","node_modules_react_index.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_AppManager.ts"],"node_modules/orionos-eve-core/src/nlp/path/NlpPath.js");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
   var _classCallCheck = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/classCallCheck");
@@ -43196,1458 +44648,6 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.default = App;
 },"system_2d01160272669884793b18983a46dcd0_app_App.js",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_extends.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_get.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts","node_modules_react_index.js","system_2d01160272669884793b18983a46dcd0_app_demo_HeadTurnScreen.tsx"],"app/App.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  var _exportNames = {
-    NlpPath: true
-  };
-  Object.defineProperty(exports, "NlpPath", {
-    enumerable: true,
-    get: function get() {
-      return _NlpPath.NlpPath;
-    }
-  });
-
-  var _Eve = _$$_REQUIRE(_dependencyMap[0], "./Eve");
-
-  Object.keys(_Eve).forEach(function (key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _Eve[key]) return;
-    Object.defineProperty(exports, key, {
-      enumerable: true,
-      get: function get() {
-        return _Eve[key];
-      }
-    });
-  });
-
-  var _AppManager = _$$_REQUIRE(_dependencyMap[1], "./src/robot/api/AppManager");
-
-  Object.keys(_AppManager).forEach(function (key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _AppManager[key]) return;
-    Object.defineProperty(exports, key, {
-      enumerable: true,
-      get: function get() {
-        return _AppManager[key];
-      }
-    });
-  });
-
-  var _AppUpdateManager = _$$_REQUIRE(_dependencyMap[2], "./src/robot/api/AppUpdateManager");
-
-  Object.keys(_AppUpdateManager).forEach(function (key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _AppUpdateManager[key]) return;
-    Object.defineProperty(exports, key, {
-      enumerable: true,
-      get: function get() {
-        return _AppUpdateManager[key];
-      }
-    });
-  });
-
-  var _RobotSettingApi = _$$_REQUIRE(_dependencyMap[3], "./src/robot/api/RobotSettingApi");
-
-  Object.keys(_RobotSettingApi).forEach(function (key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _RobotSettingApi[key]) return;
-    Object.defineProperty(exports, key, {
-      enumerable: true,
-      get: function get() {
-        return _RobotSettingApi[key];
-      }
-    });
-  });
-
-  var _NlpPath = _$$_REQUIRE(_dependencyMap[4], "./src/nlp/path/NlpPath");
-},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts",["orionos-eve-core_Eve.ts","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_AppManager.ts","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_AppUpdateManager.ts","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_RobotSettingApi.ts","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_nlp_path_NlpPath.js"],"node_modules/orionos-eve-core/index.ts");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  exports.DOMImplementation = window.DOMImplementation;
-  exports.XMLSerializer = window.XMLSerializer;
-  exports.DOMParser = window.DOMParser;
-},"system_2d01160272669884793b18983a46dcd0_node_modules_roslib_src_util_shim_@xmldom_xmldom.js",[],"node_modules/roslib/src/util/shim/@xmldom/xmldom.js");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.AppManager = void 0;
-
-  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
-
-  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
-
-  var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
-
-  var _Initial = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../../Initial"));
-
-  var _Utils = _$$_REQUIRE(_dependencyMap[5], "../../utils/Utils");
-
-  var appManager = _reactNative.NativeModules.AppManager;
-
-  var AppManager = function () {
-    function AppManager() {
-      (0, _classCallCheck2.default)(this, AppManager);
-    }
-
-    (0, _createClass2.default)(AppManager, null, [{
-      key: "getAppJson",
-      value: function getAppJson() {
-        if (this.appId) {
-          if (_Initial.default.isSupportPlugin) {
-            return appManager.getAppJsonByAppId(this.appId);
-          } else {
-            (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-            return '';
-          }
-        } else {
-          try {
-            return appManager.getAppJson();
-          } catch (error) {
-            (0, _Utils.newError)(error);
-            return '';
-          }
-        }
-      }
-    }, {
-      key: "getOpkPath",
-      value: function getOpkPath() {
-        if (this.appId) {
-          if (_Initial.default.isSupportPlugin) {
-            return appManager.getOpkPathByAppId(this.appId);
-          } else {
-            (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-            return '';
-          }
-        } else {
-          try {
-            return appManager.getOpkPath();
-          } catch (error) {
-            (0, _Utils.newError)(error);
-            return '';
-          }
-        }
-      }
-    }, {
-      key: "getOpkExtraPath",
-      value: function getOpkExtraPath() {
-        if (this.appId) {
-          if (_Initial.default.isSupportPlugin) {
-            return appManager.getOpkExtraPathByAppId(this.appId);
-          } else {
-            (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-            return '';
-          }
-        } else {
-          try {
-            return appManager.getOpkExtraPath();
-          } catch (error) {
-            (0, _Utils.newError)(error);
-            return '';
-          }
-        }
-      }
-    }, {
-      key: "getAppId",
-      value: function getAppId() {
-        if (this.appId) {
-          return this.appId;
-        }
-
-        if (_Initial.default.isSupportAppId) {
-          try {
-            var appJson = AppManager.getAppJson();
-
-            if (appJson) {
-              return JSON.parse(appJson).appid;
-            }
-
-            (0, _Utils.newWarn)('getAppId AppJson error');
-            return '';
-          } catch (error) {
-            (0, _Utils.newWarn)(error);
-            return '';
-          }
-        }
-
-        return '';
-      }
-    }, {
-      key: "getAppIcon",
-      value: function getAppIcon() {
-        if (_Initial.default.isSupportPlugin) {
-          return appManager.getAppIcon(this.appId);
-        } else {
-          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-          return '';
-        }
-      }
-    }, {
-      key: "getAppConfig",
-      value: function getAppConfig() {
-        if (_Initial.default.isSupportPlugin) {
-          return appManager.getAppConfig(this.appId);
-        } else {
-          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-          return '';
-        }
-      }
-    }, {
-      key: "setAppConfig",
-      value: function setAppConfig(key, value) {
-        if (_Initial.default.isSupportConfigUpdateNotify && this.appId) {
-          appManager.setAppConfig(this.appId, key, value);
-        } else {
-          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-        }
-      }
-    }, {
-      key: "setConfigUpdateListener",
-      value: function setConfigUpdateListener(onConfigUpdate) {
-        if (_Initial.default.isSupportConfigUpdateNotify && this.appId) {
-          if (this.configUpdate) {
-            this.configUpdate.remove();
-          }
-
-          this.configUpdate = _reactNative.DeviceEventEmitter.addListener('configUpdate_' + this.appId, function (data) {
-            var config = JSON.parse(data);
-            onConfigUpdate(config);
-          });
-        } else {
-          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-          return '';
-        }
-      }
-    }, {
-      key: "setSystemConfigUpdateListener",
-      value: function setSystemConfigUpdateListener(onConfigUpdate) {
-        var systemId = this.getSystemId();
-
-        if (_Initial.default.isSupportConfigUpdateNotify && systemId) {
-          if (this.systemConfigUpdate) {
-            this.systemConfigUpdate.remove();
-          }
-
-          this.systemConfigUpdate = _reactNative.DeviceEventEmitter.addListener('configUpdate_' + systemId, function (data) {
-            var config = JSON.parse(data);
-            onConfigUpdate(config);
-          });
-        } else {
-          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-          return '';
-        }
-      }
-    }, {
-      key: "getSystemId",
-      value: function getSystemId() {
-        if (_Initial.default.isSupportSystemId) {
-          return appManager.getSystemId();
-        } else {
-          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-          return '';
-        }
-      }
-    }, {
-      key: "restartApp",
-      value: function restartApp() {
-        if (_Initial.default.isSupportPlugin) {
-          appManager.restartApp(this.appId);
-        } else {
-          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-        }
-      }
-    }, {
-      key: "startApp",
-      value: function startApp(appId) {
-        if (_Initial.default.isSupportNlpParser) {
-          appManager.startApp(appId);
-        } else {
-          var msg = 'The device does not support startApp API.';
-          (0, _Utils.newError)(msg);
-        }
-      }
-    }, {
-      key: "destroyApp",
-      value: function destroyApp(appId) {
-        if (_Initial.default.isSupportNlpParser) {
-          appManager.destroyApp(appId);
-        } else {
-          var msg = 'The device does not support destroyApp API.';
-          (0, _Utils.newWarn)(msg);
-        }
-      }
-    }, {
-      key: "moveToForeground",
-      value: function moveToForeground(appId) {
-        if (_Initial.default.isSupportNlpParser) {
-          appManager.moveToForeground(appId);
-        } else {
-          var msg = 'The device does not support moveToForeground API.';
-          (0, _Utils.newWarn)(msg);
-        }
-      }
-    }, {
-      key: "moveToBack",
-      value: function moveToBack(appId) {
-        if (_Initial.default.isSupportNlpParser) {
-          appManager.moveToBack(appId);
-        } else {
-          var msg = 'The device does not support moveToBack API.';
-          (0, _Utils.newWarn)(msg);
-        }
-      }
-    }, {
-      key: "setAppPath",
-      value: function setAppPath(appId, path) {
-        if (_Initial.default.isSupportNlpParser) {
-          appManager.setAppPath(appId, path);
-        } else {
-          var msg = 'The device does not support setAppPath API.';
-          (0, _Utils.newError)(msg);
-        }
-      }
-    }, {
-      key: "setAppVersion",
-      value: function setAppVersion(appId, version) {
-        var msg = 'The device does not support setAppVersion API.';
-        (0, _Utils.newWarn)(msg);
-      }
-    }, {
-      key: "setAppInfo",
-      value: function setAppInfo(appId, path, subPage, version) {
-        if (_Initial.default.isSupportNlpParser) {
-          if (appId) {
-            appManager.setAsyncCustomNlpData('opt_scene_switch', JSON.stringify({
-              app_id: appId,
-              path: path == undefined ? '' : path,
-              subPage: subPage == undefined ? '' : subPage,
-              version: version == undefined ? '' : version
-            }));
-          } else {
-            var msg = 'nlp_launcher_:setAppInfo appId is null';
-            (0, _Utils.newError)(msg);
-          }
-        } else {
-          var _msg = 'The device does not support setAsyncCustomNlpData API.';
-          (0, _Utils.newError)(_msg);
-        }
-      }
-    }]);
-    return AppManager;
-  }();
-
-  exports.AppManager = AppManager;
-  AppManager.appId = null;
-},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_AppManager.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","orionos-eve-core_src_Initial.ts","orionos-eve-core_src_utils_Utils.ts"],"node_modules/orionos-eve-core/src/robot/api/AppManager.ts");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.TriggerType = exports.Trigger = void 0;
-
-  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/createClass"));
-
-  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/classCallCheck"));
-
-  var _Crash = _$$_REQUIRE(_dependencyMap[3], "./utils/Crash");
-
-  var _NativeApi = _$$_REQUIRE(_dependencyMap[4], "./robot/api/NativeApi");
-
-  var _EmojiPlayerModel = _$$_REQUIRE(_dependencyMap[5], "./models/EmojiPlayerModel");
-
-  var _NlpScene = _$$_REQUIRE(_dependencyMap[6], "./nlp/scene/NlpScene");
-
-  var _TriggerManager = _$$_REQUIRE(_dependencyMap[7], "./TriggerManager");
-
-  var TriggerType;
-  exports.TriggerType = TriggerType;
-
-  (function (TriggerType) {
-    TriggerType[TriggerType["api"] = 1] = "api";
-    TriggerType[TriggerType["voice"] = 2] = "voice";
-    TriggerType[TriggerType["ui"] = 3] = "ui";
-    TriggerType[TriggerType["deepLink"] = 4] = "deepLink";
-  })(TriggerType || (exports.TriggerType = TriggerType = {}));
-
-  var Trigger = (0, _createClass2.default)(function Trigger(channel) {
-    var _this = this;
-
-    (0, _classCallCheck2.default)(this, Trigger);
-    this.appId = null;
-
-    this.getChannel = function () {
-      return _this._channel;
-    };
-
-    this.dispatch = function (data) {
-      data.eventId = data.eventId || -1;
-
-      _this.trigger(data);
-    };
-
-    this.goBack = function (data) {
-      if (_TriggerManager.triggerManager.type === _TriggerManager.TriggerNavigate.stackNavigate) {
-        _TriggerManager.triggerManager.getNavigation().goBack();
-
-        return;
-      }
-
-      var stackInfo = _TriggerManager.triggerManager.popRouteName();
-
-      if (stackInfo) {
-        data.result = stackInfo.protocol && stackInfo.protocol.result;
-        data.goBack = true;
-
-        _this._trigger(stackInfo.name, data);
-      }
-    };
-
-    this._trigger = function (router, data) {
-      var goBack = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-      var navigation = _TriggerManager.triggerManager.getNavigation();
-
-      var current = navigation.state;
-      data.channel = current.routeName;
-      console.log('caller: ', _this._channel, current, data);
-
-      _Crash.Crash.putCurrentScenesState({
-        Name: router
-      });
-
-      _NlpScene.NlpScene.switchScene(router);
-
-      if (_TriggerManager.triggerManager.middleware) {
-        _TriggerManager.triggerManager.middleware(current.routeName, router, data);
-      }
-
-      if (_TriggerManager.triggerManager.type === _TriggerManager.TriggerNavigate.replaceNavigate) {
-        navigation.replace(router, data);
-      } else {
-        navigation.navigate(router, data);
-      }
-
-      if (data.goBack !== true) {
-        if (data.channel !== router) {
-          var existRoute = _TriggerManager.triggerManager.isRouteExistInStack(router);
-
-          if (existRoute) {
-            _TriggerManager.triggerManager.popTo(router);
-          } else {
-            if (data.putStack !== false) {
-              _TriggerManager.triggerManager.pushRouteName(data.channel, data);
-            }
-          }
-        }
-      }
-
-      _this.navSwitch(data.channel, router);
-    };
-
-    this.stopTTS = function () {
-      _NativeApi.speechApi.stopTTS();
-    };
-
-    this.playTextWithEmoji = function (listenerId, text) {
-      _EmojiPlayerModel.emojiPlayerModel.setShow(true);
-
-      _NativeApi.speechApi.playText(listenerId, text);
-    };
-
-    if (this.appId) {
-      this._channel = this.appId + '_' + channel;
-    } else {
-      this._channel = channel;
-    }
-
-    _TriggerManager.triggerManager.addTrigger(this);
-  });
-  exports.Trigger = Trigger;
-},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_Trigger.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_classCallCheck.js","orionos-eve-core_src_utils_Crash.ts","orionos-eve-core_src_robot_api_NativeApi.ts","orionos-eve-core_src_models_EmojiPlayerModel.ts","orionos-eve-core_src_nlp_scene_NlpScene.ts","orionos-eve-core_src_TriggerManager.ts"],"node_modules/orionos-eve-core/src/Trigger.ts");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.MsgPushType = exports.MsgPushManager = void 0;
-
-  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
-
-  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
-
-  var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
-
-  var _ = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[4], "lodash"));
-
-  var _Utils = _$$_REQUIRE(_dependencyMap[5], "../../utils/Utils");
-
-  var _Initial = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "../../Initial"));
-
-  function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
-  function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-  var messagePushApi = _reactNative.NativeModules.MsgPushManager;
-  var MsgPushType;
-  exports.MsgPushType = MsgPushType;
-
-  (function (MsgPushType) {
-    MsgPushType[MsgPushType["APP_OBTAIN"] = 1] = "APP_OBTAIN";
-    MsgPushType[MsgPushType["BOOT_RECOMMEND"] = 2] = "BOOT_RECOMMEND";
-    MsgPushType[MsgPushType["OTA_RECOMMEND"] = 3] = "OTA_RECOMMEND";
-  })(MsgPushType || (exports.MsgPushType = MsgPushType = {}));
-
-  var MsgPushManager = function () {
-    function MsgPushManager() {
-      (0, _classCallCheck2.default)(this, MsgPushManager);
-    }
-
-    (0, _createClass2.default)(MsgPushManager, null, [{
-      key: "getMessages",
-      value: function getMessages() {
-        var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : MsgPushType.APP_OBTAIN;
-        var appId = arguments.length > 1 ? arguments[1] : undefined;
-        var appPath = arguments.length > 2 ? arguments[2] : undefined;
-
-        if (_Initial.default.msgControlVer > 0) {
-          return messagePushApi.getMessages(type, appId, appPath);
-        } else {
-          (0, _Utils.newError)('Your ModuleApp do not support getMessages');
-          return '';
-        }
-      }
-    }, {
-      key: "getMessageContent",
-      value: function getMessageContent(msgId) {
-        if (_Initial.default.msgControlVer > 0) {
-          return messagePushApi.getMessageContent(msgId);
-        } else {
-          (0, _Utils.newError)('Your ModuleApp do not support getMessageContent');
-          return '';
-        }
-      }
-    }, {
-      key: "getDetail",
-      value: function getDetail(detailId) {
-        if (_Initial.default.msgControlVer > 1) {
-          return messagePushApi.getDetail(detailId);
-        } else {
-          (0, _Utils.newError)('Your ModuleApp do not support getDetail');
-          return '';
-        }
-      }
-    }, {
-      key: "increaseDetailPlayTimes",
-      value: function increaseDetailPlayTimes(detailId) {
-        if (_Initial.default.msgControlVer > 1) {
-          messagePushApi.increaseDetailPlayTimes(detailId);
-        } else {
-          (0, _Utils.newError)('Your ModuleApp do not support increaseDetailPlayTimes');
-        }
-      }
-    }, {
-      key: "deleteDetail",
-      value: function deleteDetail(detailId) {
-        if (_Initial.default.msgControlVer > 1) {
-          messagePushApi.deleteDetail(detailId);
-        } else {
-          (0, _Utils.newError)('Your ModuleApp do not support deleteDetail');
-        }
-      }
-    }, {
-      key: "registerMsgChanged",
-      value: function registerMsgChanged(callbackId, type, appId, appPath) {
-        if (_Initial.default.msgControlVer > 0) {
-          if (!_.isNumber(callbackId) || callbackId < 0) {
-            (0, _Utils.newError)('MsgPushListener callbackId must be validate.');
-          } else {
-            messagePushApi.registerMsgChanged(callbackId, type, appId, appPath);
-          }
-        } else {
-          (0, _Utils.newError)('Your ModuleApp do not support monitor msg push changes.');
-        }
-      }
-    }, {
-      key: "unregisterMsgChanged",
-      value: function unregisterMsgChanged(callbackId) {
-        if (_Initial.default.msgControlVer > 0) {
-          if (!_.isNumber(callbackId) || callbackId < 0) {
-            (0, _Utils.newError)('MsgPushListener callbackId must be validate.');
-          } else {
-            messagePushApi.unregisterMsgChanged(callbackId);
-          }
-        } else {
-          (0, _Utils.newError)('Your ModuleApp do not support monitor msg push changes.');
-        }
-      }
-    }]);
-    return MsgPushManager;
-  }();
-
-  exports.MsgPushManager = MsgPushManager;
-},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_MsgPushManager.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","node_modules_lodash_lodash.js","orionos-eve-core_src_utils_Utils.ts","orionos-eve-core_src_Initial.ts"],"node_modules/orionos-eve-core/src/robot/api/MsgPushManager.ts");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.BaseViewModel = void 0;
-
-  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/createClass"));
-
-  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/classCallCheck"));
-
-  var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
-
-  var _Trigger = _$$_REQUIRE(_dependencyMap[4], "./Trigger");
-
-  var _RecognitionModel = _$$_REQUIRE(_dependencyMap[5], "./models/RecognitionModel");
-
-  var _EmojiPlayerModel = _$$_REQUIRE(_dependencyMap[6], "./models/EmojiPlayerModel");
-
-  var _FaceParticleModel = _$$_REQUIRE(_dependencyMap[7], "./models/FaceParticleModel");
-
-  var BaseViewModel = (0, _createClass2.default)(function BaseViewModel(channel) {
-    var _this = this;
-
-    (0, _classCallCheck2.default)(this, BaseViewModel);
-    this.recognitionStore = _RecognitionModel.recognitionModel;
-    this.emojiPlayerStore = _EmojiPlayerModel.emojiPlayerModel;
-    this.faceParticleStore = _FaceParticleModel.faceParticleModel;
-    this.appId = null;
-
-    this.setVoice = function (voice) {
-      _this._voice = voice;
-      _this._voice && _this._voice.start();
-      return _this;
-    };
-
-    this.setSpeakInfoMap = function (speakInfoMap) {
-      if (_this._voice) {
-        _this._voice.setSpeakInfoMap(speakInfoMap);
-      }
-    };
-
-    this.updateSpeakInfo = function (speakInfo) {
-      if (_this._voice) {
-        _this._voice.updateSpeakInfo(speakInfo);
-      }
-    };
-
-    this.setView = function (view) {
-      _this._view = view;
-      return _this;
-    };
-
-    this.getChannel = function () {
-      return _this._channel;
-    };
-
-    this._trigger = function (type, eventId, data) {
-      var protocol = {
-        channel: _this._channel,
-        eventId: eventId,
-        type: type,
-        result: data
-      };
-      console.log('trigger: ', protocol);
-
-      _reactNative.DeviceEventEmitter.emit('__trigger__', protocol);
-    };
-
-    this._uiTrigger = function (eventId, data) {
-      _this._trigger(_Trigger.TriggerType.ui, eventId, data);
-    };
-
-    this._voiceTrigger = function (eventId, data, queryType) {
-      if (queryType === 2) {
-        _this._trigger(_Trigger.TriggerType.ui, eventId, data);
-      } else {
-        _this._trigger(_Trigger.TriggerType.voice, eventId, data);
-      }
-    };
-
-    this._apiTrigger = function (eventId, data) {
-      _this._trigger(_Trigger.TriggerType.api, eventId, data);
-    };
-
-    this.start = function () {
-      if (_this.status === 'stop') {
-        _this.status = 'start';
-        _this._voice && _this._voice.start();
-
-        _this.onStart();
-      }
-    };
-
-    this.stop = function () {
-      if (_this.status === 'start') {
-        _this.status = 'stop';
-        _this._voice && _this._voice.stop();
-
-        _this.onStop();
-
-        _this._voice = undefined;
-        _this._view = undefined;
-      }
-    };
-
-    this.showEmojiPlayer = function () {
-      _this.emojiPlayerStore.setShow(true);
-    };
-
-    this.hideEmojiPlayer = function () {
-      _this.emojiPlayerStore.setShow(false);
-    };
-
-    this.startEmojiTalk = function () {
-      _this.emojiPlayerStore.setTalk(true);
-    };
-
-    this.stopEmojiTalk = function () {
-      _this.emojiPlayerStore.setTalk(false);
-    };
-
-    this.showRecognition = function () {
-      _this.recognitionStore.setShow(true);
-    };
-
-    this.hideRecognition = function () {
-      _this.recognitionStore.setShow(false);
-    };
-
-    this.showFaceParticle = function () {
-      _this.faceParticleStore.setHide(false);
-    };
-
-    this.hideFaceParticle = function () {
-      _this.faceParticleStore.setHide(true);
-    };
-
-    this.showEyeCenter = function () {
-      _this.faceParticleStore.setShowCenter(true);
-    };
-
-    this.showEyeLeft = function () {
-      _this.faceParticleStore.setShowCenter(false);
-    };
-
-    this.showBackgroundStar = function () {
-      _this.faceParticleStore.setShowStar(true);
-    };
-
-    this.hideBackgroundStar = function () {
-      _this.faceParticleStore.setShowStar(false);
-    };
-
-    if (this.appId) {
-      this._channel = this.appId + '_' + channel;
-    } else {
-      this._channel = channel;
-    }
-
-    this.status = 'stop';
-  });
-  exports.BaseViewModel = BaseViewModel;
-},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_BaseViewModel.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_Trigger.ts","orionos-eve-core_src_models_RecognitionModel.ts","orionos-eve-core_src_models_EmojiPlayerModel.ts","orionos-eve-core_src_models_FaceParticleModel.ts"],"node_modules/orionos-eve-core/src/BaseViewModel.ts");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.NavigationTransferComponent = void 0;
-
-  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
-
-  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
-
-  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/inherits"));
-
-  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/possibleConstructorReturn"));
-
-  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/getPrototypeOf"));
-
-  var _BaseRobotComponent2 = _$$_REQUIRE(_dependencyMap[6], "./BaseRobotComponent");
-
-  var _Utils = _$$_REQUIRE(_dependencyMap[7], "../../utils/Utils");
-
-  var _Initial = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8], "../../Initial"));
-
-  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
-
-  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-  var sprintf = _$$_REQUIRE(_dependencyMap[9], "sprintf-js").sprintf;
-
-  var COMPONENT_NATIVE_BRIDGE_NAME = 'NavigationTransfer';
-
-  var NavigationTransferComponent = function (_BaseRobotComponent) {
-    (0, _inherits2.default)(NavigationTransferComponent, _BaseRobotComponent);
-
-    var _super = _createSuper(NavigationTransferComponent);
-
-    function NavigationTransferComponent(props) {
-      var _this;
-
-      (0, _classCallCheck2.default)(this, NavigationTransferComponent);
-      _this = _super.call(this, props);
-
-      if (_Initial.default.multiRobotNavigationVer <= 0) {
-        (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-      }
-
-      return _this;
-    }
-
-    (0, _createClass2.default)(NavigationTransferComponent, [{
-      key: "getComponentParam",
-      value: function getComponentParam() {
-        return this.props.param;
-      }
-    }, {
-      key: "generateComponentInfo",
-      value: function generateComponentInfo() {
-        return new _BaseRobotComponent2.RobotComponentInfo(COMPONENT_NATIVE_BRIDGE_NAME, (0, _Utils.getuuid)(), true, true, true, [_BaseRobotComponent2.ResouceType.Navigation]);
-      }
-    }]);
-    return NavigationTransferComponent;
-  }(_BaseRobotComponent2.BaseRobotComponent);
-
-  exports.NavigationTransferComponent = NavigationTransferComponent;
-},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_components_NavigationTransferComponent.tsx",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","orionos-eve-core_src_robot_components_BaseRobotComponent.tsx","orionos-eve-core_src_utils_Utils.ts","orionos-eve-core_src_Initial.ts","node_modules_sprintf-js_src_sprintf.js"],"node_modules/orionos-eve-core/src/robot/components/NavigationTransferComponent.tsx");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.NavigationCheckComponent = void 0;
-
-  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
-
-  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
-
-  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/inherits"));
-
-  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/possibleConstructorReturn"));
-
-  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/getPrototypeOf"));
-
-  var _BaseRobotComponent2 = _$$_REQUIRE(_dependencyMap[6], "./BaseRobotComponent");
-
-  var _Utils = _$$_REQUIRE(_dependencyMap[7], "../../utils/Utils");
-
-  var _Initial = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8], "../../Initial"));
-
-  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
-
-  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-  var sprintf = _$$_REQUIRE(_dependencyMap[9], "sprintf-js").sprintf;
-
-  var COMPONENT_NATIVE_BRIDGE_NAME = 'NavigationCheck';
-
-  var NavigationCheckComponent = function (_BaseRobotComponent) {
-    (0, _inherits2.default)(NavigationCheckComponent, _BaseRobotComponent);
-
-    var _super = _createSuper(NavigationCheckComponent);
-
-    function NavigationCheckComponent(props) {
-      var _this;
-
-      (0, _classCallCheck2.default)(this, NavigationCheckComponent);
-      _this = _super.call(this, props);
-
-      if (_Initial.default.multiRobotNavigationVer <= 0) {
-        (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-      }
-
-      return _this;
-    }
-
-    (0, _createClass2.default)(NavigationCheckComponent, [{
-      key: "getComponentParam",
-      value: function getComponentParam() {
-        return this.props.param;
-      }
-    }, {
-      key: "generateComponentInfo",
-      value: function generateComponentInfo() {
-        return new _BaseRobotComponent2.RobotComponentInfo(COMPONENT_NATIVE_BRIDGE_NAME, (0, _Utils.getuuid)(), true, true, false, [_BaseRobotComponent2.ResouceType.Navigation]);
-      }
-    }]);
-    return NavigationCheckComponent;
-  }(_BaseRobotComponent2.BaseRobotComponent);
-
-  exports.NavigationCheckComponent = NavigationCheckComponent;
-},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_components_NavigationCheckComponent.tsx",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","orionos-eve-core_src_robot_components_BaseRobotComponent.tsx","orionos-eve-core_src_utils_Utils.ts","orionos-eve-core_src_Initial.ts","node_modules_sprintf-js_src_sprintf.js"],"node_modules/orionos-eve-core/src/robot/components/NavigationCheckComponent.tsx");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.RobotMapManager = void 0;
-
-  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
-
-  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
-
-  var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
-
-  var _Initial = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../../Initial"));
-
-  var _Utils = _$$_REQUIRE(_dependencyMap[5], "../../utils/Utils");
-
-  var robotMapManager = _reactNative.NativeModules.MapManager;
-
-  var RobotMapManager = function () {
-    function RobotMapManager() {
-      (0, _classCallCheck2.default)(this, RobotMapManager);
-    }
-
-    (0, _createClass2.default)(RobotMapManager, null, [{
-      key: "t9Search",
-      value: function t9Search(query) {
-        if (_Initial.default.mapControlVer > 0) {
-          return robotMapManager.t9Search(query);
-        } else {
-          var msg = 'The device does not support t9Search API.';
-          (0, _Utils.newError)(msg);
-          return '';
-        }
-      }
-    }]);
-    return RobotMapManager;
-  }();
-
-  exports.RobotMapManager = RobotMapManager;
-},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_RobotMapManager.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","orionos-eve-core_src_Initial.ts","orionos-eve-core_src_utils_Utils.ts"],"node_modules/orionos-eve-core/src/robot/api/RobotMapManager.ts");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.TaskEvent = void 0;
-
-  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/createClass"));
-
-  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/classCallCheck"));
-
-  var TaskEvent = (0, _createClass2.default)(function TaskEvent(taskId, taskData, eventType, eventData, subTaskId, subTaskType, subTaskData, isCreateOnStart) {
-    (0, _classCallCheck2.default)(this, TaskEvent);
-    this.taskId = taskId;
-    this.taskData = taskData;
-    this.eventType = eventType;
-    this.eventData = eventData;
-    this.subTaskId = subTaskId;
-    this.subTaskType = subTaskType;
-    this.subTaskData = subTaskData;
-    this.isCreateOnStart = isCreateOnStart;
-    this.taskId = taskId;
-    this.taskData = taskData;
-    this.eventType = eventType;
-    this.eventData = eventData;
-    this.subTaskId = subTaskId;
-    this.subTaskType = subTaskType;
-    this.subTaskData = subTaskData;
-    this.isCreateOnStart = isCreateOnStart;
-  });
-  exports.TaskEvent = TaskEvent;
-},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_definition_RobotApiParam.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_classCallCheck.js"],"node_modules/orionos-eve-core/src/robot/api/definition/RobotApiParam.ts");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.MsgPushListener = void 0;
-
-  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/createClass"));
-
-  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/classCallCheck"));
-
-  var _assertThisInitialized2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/assertThisInitialized"));
-
-  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/inherits"));
-
-  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/possibleConstructorReturn"));
-
-  var _get2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "@babel/runtime/helpers/get"));
-
-  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "@babel/runtime/helpers/getPrototypeOf"));
-
-  var _BaseListener2 = _$$_REQUIRE(_dependencyMap[8], "./BaseListener");
-
-  var _ListenerManager = _$$_REQUIRE(_dependencyMap[9], "../ListenerManager");
-
-  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
-
-  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-  var MsgPushListener = function (_BaseListener) {
-    (0, _inherits2.default)(MsgPushListener, _BaseListener);
-
-    var _super = _createSuper(MsgPushListener);
-
-    function MsgPushListener() {
-      var _thisSuper, _this;
-
-      (0, _classCallCheck2.default)(this, MsgPushListener);
-      _this = _super.call(this, _ListenerManager.listenersManager.msgPushListenerManager);
-
-      _this.onMsgChanged = function (callback) {
-        (0, _get2.default)((_thisSuper = (0, _assertThisInitialized2.default)(_this), (0, _getPrototypeOf2.default)(MsgPushListener.prototype)), "addListener", _thisSuper).call(_thisSuper, MsgPushListener.EVENT_ON_MSG_CHANGED, callback);
-      };
-
-      return _this;
-    }
-
-    return (0, _createClass2.default)(MsgPushListener);
-  }(_BaseListener2.BaseListener);
-
-  exports.MsgPushListener = MsgPushListener;
-  MsgPushListener.EVENT_ON_MSG_CHANGED = 'onMsgPushChanged';
-},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_listener_MsgPushListener.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_assertThisInitialized.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_get.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","orionos-eve-core_src_robot_listener_BaseListener.ts","orionos-eve-core_src_robot_ListenerManager.ts"],"node_modules/orionos-eve-core/src/robot/listener/MsgPushListener.ts");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.AppUpdateManager = void 0;
-
-  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
-
-  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
-
-  var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
-
-  var _Initial = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../../Initial"));
-
-  var _Utils = _$$_REQUIRE(_dependencyMap[5], "../../utils/Utils");
-
-  var updateManager = _reactNative.NativeModules.AppUpdateManager;
-
-  var AppUpdateManager = function () {
-    function AppUpdateManager() {
-      (0, _classCallCheck2.default)(this, AppUpdateManager);
-    }
-
-    (0, _createClass2.default)(AppUpdateManager, null, [{
-      key: "isInitInstall",
-      value: function isInitInstall() {
-        if (_Initial.default.isSupportPlugin) {
-          return updateManager.isInitInstall(this.appId);
-        } else {
-          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-          return false;
-        }
-      }
-    }, {
-      key: "isUpdating",
-      value: function isUpdating() {
-        if (_Initial.default.isSupportPlugin) {
-          return updateManager.isUpdating(this.appId);
-        } else {
-          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-          return false;
-        }
-      }
-    }, {
-      key: "checkUpdate",
-      value: function checkUpdate() {
-        if (_Initial.default.isSupportPlugin) {
-          return updateManager.checkUpdate(this.appId);
-        } else {
-          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-          return false;
-        }
-      }
-    }, {
-      key: "setUpdateEnable",
-      value: function setUpdateEnable(enable) {
-        if (_Initial.default.isSupportDisableUpdate) {
-          updateManager.setUpdateEnable(this.appId, enable);
-        } else {
-          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-        }
-      }
-    }, {
-      key: "setUpdateListener",
-      value: function setUpdateListener(updateStatus, updateResult) {
-        if (!_Initial.default.isSupportPlugin) {
-          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-          return;
-        }
-
-        if (this.updateProgress) {
-          this.updateProgress.remove();
-        }
-
-        this.updateProgress = _reactNative.DeviceEventEmitter.addListener('updateProgress', function (data) {
-          var status = JSON.parse(data);
-          updateStatus(status.count, status.index, status.appName, status.oper);
-        });
-
-        if (this.updateResult) {
-          this.updateResult.remove();
-        }
-
-        this.updateResult = _reactNative.DeviceEventEmitter.addListener('updateResult', function (data) {
-          var result = JSON.parse(data);
-          updateResult(result.result, result.message);
-        });
-        updateManager.setUpdateListener();
-      }
-    }, {
-      key: "startUpdate",
-      value: function startUpdate() {
-        if (_Initial.default.isSupportPlugin) {
-          updateManager.startUpdate(this.appId);
-        } else {
-          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-        }
-      }
-    }, {
-      key: "retryUpdate",
-      value: function retryUpdate() {
-        if (_Initial.default.isSupportPlugin) {
-          updateManager.retryUpdate(this.appId);
-        } else {
-          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-        }
-      }
-    }, {
-      key: "cancelUpdate",
-      value: function cancelUpdate() {
-        if (_Initial.default.isSupportPlugin) {
-          updateManager.cancelUpdate(this.appId);
-        } else {
-          (0, _Utils.newError)(_Utils.DEV_ERROR_SUPPORT);
-        }
-      }
-    }]);
-    return AppUpdateManager;
-  }();
-
-  exports.AppUpdateManager = AppUpdateManager;
-  AppUpdateManager.appId = null;
-},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_AppUpdateManager.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","orionos-eve-core_src_Initial.ts","orionos-eve-core_src_utils_Utils.ts"],"node_modules/orionos-eve-core/src/robot/api/AppUpdateManager.ts");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.RobotSettingApi = void 0;
-
-  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
-
-  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
-
-  var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
-
-  var _Initial = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../../Initial"));
-
-  var _Utils = _$$_REQUIRE(_dependencyMap[5], "../../utils/Utils");
-
-  var robotSettingApi = _reactNative.NativeModules.RobotSettingApi;
-
-  var RobotSettingApi = function () {
-    function RobotSettingApi() {
-      (0, _classCallCheck2.default)(this, RobotSettingApi);
-    }
-
-    (0, _createClass2.default)(RobotSettingApi, null, [{
-      key: "getRobotString",
-      value: function getRobotString(key) {
-        if (_Initial.default.isSupportRobotSettingApi) {
-          return robotSettingApi.getRobotString(key);
-        } else {
-          var msg = 'This system version does not support getRobotString.';
-          (0, _Utils.newError)(msg);
-          return Promise.reject(msg);
-        }
-      }
-    }, {
-      key: "getRobotFloat",
-      value: function getRobotFloat(key) {
-        if (_Initial.default.isSupportRobotSettingApi) {
-          return robotSettingApi.getRobotFloat(key);
-        } else {
-          var msg = 'This system version does not support getRobotFloat.';
-          (0, _Utils.newError)(msg);
-          return Promise.reject(msg);
-        }
-      }
-    }, {
-      key: "getRobotInt",
-      value: function getRobotInt(key) {
-        if (_Initial.default.isSupportRobotSettingApi) {
-          return robotSettingApi.getRobotInt(key);
-        } else {
-          var msg = 'This system version does not support getRobotInt.';
-          (0, _Utils.newError)(msg);
-          return Promise.reject(msg);
-        }
-      }
-    }, {
-      key: "setRobotString",
-      value: function setRobotString(key, value) {
-        if (_Initial.default.isSupportRobotSettingApi) {
-          if (this.appId && _Initial.default.isSupportRobotSettingPermission) {
-            robotSettingApi.setRobotString(this.appId, key, value);
-          } else {
-            robotSettingApi.setRobotString(key, value);
-          }
-        } else {
-          (0, _Utils.newError)('This system version does not support setRobotString.');
-        }
-      }
-    }, {
-      key: "setRobotFloat",
-      value: function setRobotFloat(key, value) {
-        if (_Initial.default.isSupportRobotSettingApi) {
-          if (this.appId && _Initial.default.isSupportRobotSettingPermission) {
-            robotSettingApi.setRobotFloat(this.appId, key, value);
-          } else {
-            robotSettingApi.setRobotFloat(key, value);
-          }
-        } else {
-          (0, _Utils.newError)('This system version does not support setRobotFloat.');
-        }
-      }
-    }, {
-      key: "setRobotInt",
-      value: function setRobotInt(key, value) {
-        if (_Initial.default.isSupportRobotSettingApi) {
-          if (this.appId && _Initial.default.isSupportRobotSettingPermission) {
-            robotSettingApi.setRobotInt(this.appId, key, value);
-          } else {
-            robotSettingApi.setRobotInt(key, value);
-          }
-        } else {
-          (0, _Utils.newError)('This system version does not support setRobotInt.');
-        }
-      }
-    }, {
-      key: "registerRobotSettingListener",
-      value: function registerRobotSettingListener(callbackId, keys) {
-        if (_Initial.default.isSupportRobotSettingApi) {
-          robotSettingApi.registerRobotSettingListener(callbackId, keys);
-        } else {
-          (0, _Utils.newError)('This system version does not support registerRobotSettingListener.');
-        }
-      }
-    }, {
-      key: "unRegisterRobotSettingListener",
-      value: function unRegisterRobotSettingListener(callbackId) {
-        if (_Initial.default.isSupportRobotSettingApi) {
-          robotSettingApi.unRegisterRobotSettingListener(callbackId);
-        } else {
-          (0, _Utils.newError)('This system version does not support unRegisterRobotSettingListener.');
-        }
-      }
-    }, {
-      key: "isCharging",
-      value: function isCharging() {
-        if (_Initial.default.robotSettingApiVersion >= 1) {
-          return robotSettingApi.isCharging();
-        } else {
-          var msg = 'This system version does not support isCharging.';
-          (0, _Utils.newError)(msg);
-          return Promise.reject(msg);
-        }
-      }
-    }, {
-      key: "clearSettingsListener",
-      value: function clearSettingsListener() {
-        if (_Initial.default.robotSettingApiVersion >= 1) {
-          robotSettingApi.clearSettingsListener();
-        } else {
-          (0, _Utils.newError)('This system version does not support unRegisterRobotSettingListener.');
-        }
-      }
-    }]);
-    return RobotSettingApi;
-  }();
-
-  exports.RobotSettingApi = RobotSettingApi;
-  RobotSettingApi.appId = null;
-},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_RobotSettingApi.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","orionos-eve-core_src_Initial.ts","orionos-eve-core_src_utils_Utils.ts"],"node_modules/orionos-eve-core/src/robot/api/RobotSettingApi.ts");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.NlpPath = NlpPath;
-
-  var _extends2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/extends"));
-
-  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/classCallCheck"));
-
-  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/createClass"));
-
-  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/inherits"));
-
-  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/possibleConstructorReturn"));
-
-  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "@babel/runtime/helpers/getPrototypeOf"));
-
-  var _react = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "react"));
-
-  var _AppManager = _$$_REQUIRE(_dependencyMap[8], "../../robot/api/AppManager");
-
-  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
-
-  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-  var TAG = 'NlpPath';
-
-  var appId = _AppManager.AppManager.getAppId();
-
-  var defaultPath = 'main';
-  var path = null;
-
-  function setPath(pathName, action) {
-    console.log(TAG, 'Set path : ' + pathName + '   ' + action + '   ' + appId);
-
-    _AppManager.AppManager.setAppInfo(appId, pathName);
-
-    if (action) {
-      action.start();
-    }
-  }
-
-  function onPathMount(pathName, action) {
-    console.log(TAG, 'On path mount : ' + pathName + '   ' + action + '   ' + appId);
-    var prePath = path;
-    path = {
-      pathName: pathName,
-      action: action,
-      pre: prePath
-    };
-    setPath(pathName, action);
-  }
-
-  function onPathUnmount(pathName, action) {
-    console.log(TAG, 'On path unmount : ' + pathName);
-
-    if (action) {
-      action.stop();
-    }
-
-    if (path.pre && path.pre.pathName === pathName) {
-      path.pre = path.pre.pre;
-      return;
-    }
-
-    if (path.pathName === pathName) {
-      if (path.pre) {
-        path = path.pre;
-        setPath(path.pathName, path.action);
-      } else {
-        setPath(defaultPath);
-      }
-    }
-  }
-
-  var NlpViewPath = function (_React$Component) {
-    (0, _inherits2.default)(NlpViewPath, _React$Component);
-
-    var _super = _createSuper(NlpViewPath);
-
-    function NlpViewPath(props) {
-      var _this;
-
-      (0, _classCallCheck2.default)(this, NlpViewPath);
-      _this = _super.call(this, props);
-      _this.pathName = _this.props.pathName;
-      _this.action = _this.props.action;
-      return _this;
-    }
-
-    (0, _createClass2.default)(NlpViewPath, [{
-      key: "componentWillMount",
-      value: function componentWillMount() {
-        onPathMount(this.pathName, this.action);
-      }
-    }, {
-      key: "componentWillUnmount",
-      value: function componentWillUnmount() {
-        onPathUnmount(this.pathName, this.action);
-      }
-    }, {
-      key: "render",
-      value: function render() {
-        return _react.default.createElement(_react.default.Fragment, null, this.props.children);
-      }
-    }]);
-    return NlpViewPath;
-  }(_react.default.Component);
-
-  function decoratorViewPath(target, name, descriptor, pathName, action) {
-    console.log('NlpPath view ********** : ' + pathName);
-    var old = descriptor.value;
-
-    descriptor.value = function () {
-      for (var _len = arguments.length, arg = new Array(_len), _key = 0; _key < _len; _key++) {
-        arg[_key] = arguments[_key];
-      }
-
-      var result = old.apply(this, arg);
-      return _react.default.createElement(NlpViewPath, (0, _extends2.default)({}, arg, {
-        pathName: pathName,
-        action: action
-      }), result);
-    };
-  }
-
-  function decoratorPath(target, pathName, action) {
-    console.log('NlpPath class ********** : ' + pathName);
-    var targetWM = target.prototype.componentWillMount;
-
-    target.prototype.componentWillMount = function () {
-      targetWM && targetWM.call(this);
-      onPathMount(pathName, action);
-    };
-
-    var targetWUM = target.prototype.componentWillUnmount;
-
-    target.prototype.componentWillUnmount = function () {
-      targetWUM && targetWUM.call(this);
-      onPathUnmount(pathName, action);
-    };
-  }
-
-  function NlpPath(pathName) {
-    var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-    var taskFlow = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-    return function (target, name, descriptor) {
-      if (descriptor) {
-        decoratorViewPath(target, name, descriptor, pathName, action);
-      } else {
-        decoratorPath(target, pathName, action);
-      }
-    };
-  }
-},"system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_nlp_path_NlpPath.js",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_extends.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","node_modules_react_index.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_src_robot_api_AppManager.ts"],"node_modules/orionos-eve-core/src/nlp/path/NlpPath.js");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
   Object.defineProperty(exports, "__esModule", {
@@ -44687,19 +44687,25 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _NavigationViewModel = _$$_REQUIRE(_dependencyMap[16], "../navigation/NavigationViewModel");
 
-  var _HeadTurnVoice = _$$_REQUIRE(_dependencyMap[17], "./HeadTurnVoice");
+  var _PersonAppearViewModel = _$$_REQUIRE(_dependencyMap[17], "../personAppear/PersonAppearViewModel");
 
-  var _HeadTurnTrigger = _$$_REQUIRE(_dependencyMap[18], "./HeadTurnTrigger");
+  var _HeadTurnVoice = _$$_REQUIRE(_dependencyMap[18], "./HeadTurnVoice");
 
-  var _HeadTurnView = _$$_REQUIRE(_dependencyMap[19], "../headTurn/HeadTurnView");
+  var _HeadTurnTrigger = _$$_REQUIRE(_dependencyMap[19], "./HeadTurnTrigger");
 
-  var _BasicMotionView = _$$_REQUIRE(_dependencyMap[20], "../basicMotion/BasicMotionView");
+  var _HeadTurnView = _$$_REQUIRE(_dependencyMap[20], "../headTurn/HeadTurnView");
 
-  var _StandardFaceTrackView = _$$_REQUIRE(_dependencyMap[21], "../standardFaceTrack/StandardFaceTrackView");
+  var _BasicMotionView = _$$_REQUIRE(_dependencyMap[21], "../basicMotion/BasicMotionView");
 
-  var _ChargeStartView = _$$_REQUIRE(_dependencyMap[22], "../chargeStart/ChargeStartView");
+  var _StandardFaceTrackView = _$$_REQUIRE(_dependencyMap[22], "../standardFaceTrack/StandardFaceTrackView");
 
-  var _NavigationView = _$$_REQUIRE(_dependencyMap[23], "../navigation/NavigationView");
+  var _ChargeStartView = _$$_REQUIRE(_dependencyMap[23], "../chargeStart/ChargeStartView");
+
+  var _NavigationView = _$$_REQUIRE(_dependencyMap[24], "../navigation/NavigationView");
+
+  var _PersonAppearView = _$$_REQUIRE(_dependencyMap[25], "../personAppear/PersonAppearView");
+
+  var _ThirdApkInfo = _$$_REQUIRE(_dependencyMap[26], "../biz/base/ThirdApkInfo");
 
   var _class,
       _jsxFileName = "/Applications/htdoc/shadow_opk_for_android/app/demo/HeadTurnScreen.tsx";
@@ -44846,7 +44852,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               _this.return_obj.code = _this.callback ? _this.callback.getId() : -1;
               var result = JSON.stringify(_this.return_obj);
 
-              _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', result);
+              _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, result);
             } else if (eventDataObj.command === "bodyBack") {
               console.log(TAG, '6:' + JSON.stringify(event));
               var _text5 = eventDataObj.text;
@@ -44869,7 +44875,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
               var _result = JSON.stringify(_this.return_obj);
 
-              _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', _result);
+              _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, _result);
             } else if (eventDataObj.command === "bodyLeft") {
               console.log(TAG, '7:' + JSON.stringify(event));
               var _text6 = eventDataObj.text;
@@ -44892,7 +44898,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
               var _result2 = JSON.stringify(_this.return_obj);
 
-              _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', _result2);
+              _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, _result2);
             } else if (eventDataObj.command === "bodyRight") {
               console.log(TAG, '8:' + JSON.stringify(event));
               var _text7 = eventDataObj.text;
@@ -44915,7 +44921,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
               var _result3 = JSON.stringify(_this.return_obj);
 
-              _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', _result3);
+              _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, _result3);
             } else if (eventDataObj.command === "bodyStop") {
               console.log(TAG, '9:' + JSON.stringify(event));
               var _text8 = eventDataObj.text;
@@ -44930,7 +44936,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
               var _result4 = JSON.stringify(_this.return_obj);
 
-              _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', _result4);
+              _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, _result4);
             } else if (eventDataObj.command === "traceFace") {
               console.log(TAG, '10:' + JSON.stringify(event));
               var _text9 = eventDataObj.text;
@@ -44955,7 +44961,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
                 var result = JSON.stringify(return_obj);
                 console.log("输出当前坐标数据信息：" + result);
 
-                _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', result);
+                _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, result);
               });
             } else if (eventDataObj.command === "currentPosition") {
               console.log(TAG, '121:' + JSON.stringify(event));
@@ -44965,7 +44971,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
                 var result = JSON.stringify(return_obj);
                 console.log("输出当前坐标数据信息（字符串，不包含站点列表数据信息）：" + result);
 
-                _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', result);
+                _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, result);
               });
             } else if (eventDataObj.command === "gotoMapSite") {
               console.log(TAG, '13:' + JSON.stringify(event));
@@ -44994,7 +45000,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
               var _result5 = JSON.stringify(_this.return_obj);
 
-              _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', _result5);
+              _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, _result5);
             } else if (eventDataObj.command === "speechStop") {
               console.log(TAG, '1:' + JSON.stringify(event));
               var _text13 = eventDataObj.text;
@@ -45009,7 +45015,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
               var _result6 = JSON.stringify(_this.return_obj);
 
-              _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', _result6);
+              _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, _result6);
             } else if (eventDataObj.command === "speechQuery") {
               console.log(TAG, '16:' + JSON.stringify(event));
               var _text14 = eventDataObj.text;
@@ -45024,7 +45030,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
               var _result7 = JSON.stringify(_this.return_obj);
 
-              _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', _result7);
+              _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, _result7);
             } else if (eventDataObj.command === "startCharge") {
               console.log(TAG, '17:' + JSON.stringify(event));
               console.log("开始充电");
@@ -45044,8 +45050,22 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               console.log("OPK页面跳转操作");
 
               _this.triggerToOpk(eventDataObj.jumpNum);
-            } else if (eventDataObj.command === "exit") {
+            } else if (eventDataObj.command === "startPersonAppear") {
               console.log(TAG, '20:' + JSON.stringify(event));
+              console.log("开始根据条件找人");
+
+              _this.viewModel.setHeadAction("personAppear");
+
+              _this.pviewModel.onPressStartPersonAppear();
+            } else if (eventDataObj.command === "stopPersonAppear") {
+              console.log(TAG, '21:' + JSON.stringify(event));
+              console.log("停止根据条件找人");
+
+              _this.pviewModel.onPressFinishPersonAppear();
+
+              _this.viewModel.setHeadAction("exit");
+            } else if (eventDataObj.command === "exit") {
+              console.log(TAG, '22:' + JSON.stringify(event));
               console.log("退出操作");
 
               _this.goHome(_this.viewModel.getTriggerNum());
@@ -45082,7 +45102,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         _this.nlpApkControlListener.addListener(_orionosEveCore.NLPApkControlListener.EVENT_ON_PROCESS_INVISIBLE, function (event) {
           console.log(TAG, 'EVENT_ON_PROCESS_INVISIBLE:' + JSON.stringify(event));
 
-          _orionosEveCore.NLPApkControl.forceStopPackage("com.example.myfirstapp");
+          _orionosEveCore.NLPApkControl.forceStopPackage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME);
 
           _this.goHome(_this.viewModel.getTriggerNum());
         });
@@ -45102,10 +45122,10 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           var params_to_apk = _this.props.navigation.state.params.result;
           var re_result = JSON.stringify(params_to_apk);
 
-          _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', re_result);
+          _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, re_result);
         });
 
-        _orionosEveCore.NLPApkControl.addListener('com.example.myfirstapp', _this.nlpApkControlListener.getId());
+        _orionosEveCore.NLPApkControl.addListener(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, _this.nlpApkControlListener.getId());
       };
 
       _this.triggerToOpk = function (jumpNum) {
@@ -45119,12 +45139,11 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         _this.return_obj.code = 1;
         var result = JSON.stringify(_this.return_obj);
 
-        _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', result);
+        _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, result);
 
         console.log(TAG, '跳转到wakeUp页面2');
       };
 
-      global.recognition && global.recognition.setShow(false);
       _this.nlpApkControlListener = new _orionosEveCore.NLPApkControlListener();
 
       _this.initListener();
@@ -45135,6 +45154,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       _this.cviewModel = new _ChargeStartViewModel.ChargeStartViewModel();
       _this.mviewModel = new _MapViewModel.MapViewModel();
       _this.nviewModel = new _NavigationViewModel.NavigationViewModel();
+      _this.pviewModel = new _PersonAppearViewModel.PersonAppearViewModel();
       var voice = new _HeadTurnVoice.HeadTurnVoice(_this.viewModel);
 
       _this.setViewModel(_this.viewModel);
@@ -45166,7 +45186,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           "intent": "stop"
         };
 
-        _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', JSON.stringify(obj));
+        _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, JSON.stringify(obj));
       }
     }, {
       key: "goHome",
@@ -45201,7 +45221,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 617,
+              lineNumber: 654,
               columnNumber: 25
             }
           }) : null, _react.default.createElement(_HeadTurnView.HeadTurnView, {
@@ -45209,7 +45229,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 623,
+              lineNumber: 660,
               columnNumber: 21
             }
           }));
@@ -45225,7 +45245,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 635,
+              lineNumber: 672,
               columnNumber: 25
             }
           }) : null, _react.default.createElement(_BasicMotionView.BasicMotionView, {
@@ -45233,7 +45253,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 640,
+              lineNumber: 677,
               columnNumber: 21
             }
           }));
@@ -45250,7 +45270,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 652,
+              lineNumber: 689,
               columnNumber: 25
             }
           }) : null, _react.default.createElement(_StandardFaceTrackView.StandardFaceTrackView, {
@@ -45258,7 +45278,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 658,
+              lineNumber: 695,
               columnNumber: 21
             }
           }));
@@ -45275,7 +45295,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 670,
+              lineNumber: 707,
               columnNumber: 25
             }
           }) : null, _react.default.createElement(_ChargeStartView.ChargeStartView, {
@@ -45283,7 +45303,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 676,
+              lineNumber: 713,
               columnNumber: 21
             }
           }));
@@ -45299,7 +45319,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 687,
+              lineNumber: 724,
               columnNumber: 25
             }
           }) : null, _react.default.createElement(_NavigationView.NavigationView, {
@@ -45307,7 +45327,45 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 693,
+              lineNumber: 730,
+              columnNumber: 21
+            }
+          }));
+        } else if (this.viewModel.getHeadAction() == "personAppear") {
+          if (!this.pviewModel) {
+            return null;
+          }
+
+          console.log("人脸识别 render方法");
+          return _react.default.createElement(_react.default.Fragment, null, this.pviewModel.isRunning() ? _react.default.createElement(_orionosEveCore.PersonAppearComponent, {
+            param: this.pviewModel.getParam(),
+            onFinish: this.pviewModel && this.pviewModel.onFinish,
+            __self: this,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 742,
+              columnNumber: 25
+            }
+          }) : _react.default.createElement(_reactNative.View, {
+            __self: this,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 745,
+              columnNumber: 25
+            }
+          }, _react.default.createElement(_reactNative.Text, {
+            __self: this,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 745,
+              columnNumber: 31
+            }
+          }, "\u8FDB\u5165\u5230\u4E86personAppear\u7684else\u7684\u65B9\u6CD5\u91CC\u9762")), _react.default.createElement(_PersonAppearView.PersonAppearView, {
+            viewModel: this.pviewModel,
+            __self: this,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 747,
               columnNumber: 21
             }
           }));
@@ -45321,7 +45379,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(_orionosEveCore.BaseComponent)) || _class;
 
   exports.HeadTurnScreen = HeadTurnScreen;
-},"system_2d01160272669884793b18983a46dcd0_app_demo_HeadTurnScreen.tsx",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_get.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts","node_modules_react_index.js","node_modules_mobx-react_native.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","system_2d01160272669884793b18983a46dcd0_app_headTurn_HeadTurnViewModel.ts","system_2d01160272669884793b18983a46dcd0_app_basicMotion_BasicMotionViewModel.ts","system_2d01160272669884793b18983a46dcd0_app_standardFaceTrack_StandardFaceTrackViewModel.ts","system_2d01160272669884793b18983a46dcd0_app_chargeStart_ChargeStartViewModel.ts","system_2d01160272669884793b18983a46dcd0_app_map_MapViewModel.ts","system_2d01160272669884793b18983a46dcd0_app_navigation_NavigationViewModel.ts","system_2d01160272669884793b18983a46dcd0_app_demo_HeadTurnVoice.ts","system_2d01160272669884793b18983a46dcd0_app_demo_HeadTurnTrigger.ts","system_2d01160272669884793b18983a46dcd0_app_headTurn_HeadTurnView.tsx","system_2d01160272669884793b18983a46dcd0_app_basicMotion_BasicMotionView.tsx","system_2d01160272669884793b18983a46dcd0_app_standardFaceTrack_StandardFaceTrackView.tsx","system_2d01160272669884793b18983a46dcd0_app_chargeStart_ChargeStartView.tsx","system_2d01160272669884793b18983a46dcd0_app_navigation_NavigationView.tsx"],"app/demo/HeadTurnScreen.tsx");
+},"system_2d01160272669884793b18983a46dcd0_app_demo_HeadTurnScreen.tsx",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_get.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts","node_modules_react_index.js","node_modules_mobx-react_native.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","system_2d01160272669884793b18983a46dcd0_app_headTurn_HeadTurnViewModel.ts","system_2d01160272669884793b18983a46dcd0_app_basicMotion_BasicMotionViewModel.ts","system_2d01160272669884793b18983a46dcd0_app_standardFaceTrack_StandardFaceTrackViewModel.ts","system_2d01160272669884793b18983a46dcd0_app_chargeStart_ChargeStartViewModel.ts","system_2d01160272669884793b18983a46dcd0_app_map_MapViewModel.ts","system_2d01160272669884793b18983a46dcd0_app_navigation_NavigationViewModel.ts","system_2d01160272669884793b18983a46dcd0_app_personAppear_PersonAppearViewModel.ts","system_2d01160272669884793b18983a46dcd0_app_demo_HeadTurnVoice.ts","system_2d01160272669884793b18983a46dcd0_app_demo_HeadTurnTrigger.ts","system_2d01160272669884793b18983a46dcd0_app_headTurn_HeadTurnView.tsx","system_2d01160272669884793b18983a46dcd0_app_basicMotion_BasicMotionView.tsx","system_2d01160272669884793b18983a46dcd0_app_standardFaceTrack_StandardFaceTrackView.tsx","system_2d01160272669884793b18983a46dcd0_app_chargeStart_ChargeStartView.tsx","system_2d01160272669884793b18983a46dcd0_app_navigation_NavigationView.tsx","system_2d01160272669884793b18983a46dcd0_app_personAppear_PersonAppearView.tsx","system_2d01160272669884793b18983a46dcd0_app_biz_base_ThirdApkInfo.ts"],"app/demo/HeadTurnScreen.tsx");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -45351,6 +45409,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _HeadTurnModel = _$$_REQUIRE(_dependencyMap[10], "./HeadTurnModel");
 
   var _BasicMotionModel = _$$_REQUIRE(_dependencyMap[11], "../basicMotion/BasicMotionModel");
+
+  var _ThirdApkInfo = _$$_REQUIRE(_dependencyMap[12], "../biz/base/ThirdApkInfo");
 
   var _class;
 
@@ -45443,7 +45503,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           _this.return_obj.code = event && event.status;
           var result = JSON.stringify(_this.return_obj);
 
-          _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', result);
+          _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, result);
 
           console.log(TAG, "人脸追踪" + JSON.stringify(event));
 
@@ -45484,8 +45544,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       };
 
       _this.conDoctor = function (obj) {
-        _reactNativeIntentLauncher.default.isAppInstalled('com.example.myfirstapp').then(function (result) {
-          _orionosEveCore.OpenAppApi.openThirdPartyAppIfKillRnForResult('com.example.myfirstapp', 'com.example.myfirstapp.MainActivity', false).then(function () {});
+        _reactNativeIntentLauncher.default.isAppInstalled(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME).then(function (result) {
+          _orionosEveCore.OpenAppApi.openThirdPartyAppIfKillRnForResult(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, _ThirdApkInfo.ThirdApkInfo.MAIN_ACTIVITY, false).then(function () {});
         }).catch(function (error) {
           console.log(TAG, 'IntentLauncher isAppInstalled: no', error);
 
@@ -45564,7 +45624,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     return HeadTurnViewModel;
   }(_orionosEveCore.BaseViewModel), ((0, _applyDecoratedDescriptor2.default)(_class.prototype, "setHeadAction", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "setHeadAction"), _class.prototype)), _class);
   exports.HeadTurnViewModel = HeadTurnViewModel;
-},"system_2d01160272669884793b18983a46dcd0_app_headTurn_HeadTurnViewModel.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","node_modules_@babel_runtime_helpers_applyDecoratedDescriptor.js","node_modules_react-native-intent-launcher_index.js","node_modules_mobx_lib_mobx.module.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts","system_2d01160272669884793b18983a46dcd0_app_headTurn_HeadTurnModel.ts","system_2d01160272669884793b18983a46dcd0_app_basicMotion_BasicMotionModel.ts"],"app/headTurn/HeadTurnViewModel.ts");
+},"system_2d01160272669884793b18983a46dcd0_app_headTurn_HeadTurnViewModel.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","node_modules_@babel_runtime_helpers_applyDecoratedDescriptor.js","node_modules_react-native-intent-launcher_index.js","node_modules_mobx_lib_mobx.module.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts","system_2d01160272669884793b18983a46dcd0_app_headTurn_HeadTurnModel.ts","system_2d01160272669884793b18983a46dcd0_app_basicMotion_BasicMotionModel.ts","system_2d01160272669884793b18983a46dcd0_app_biz_base_ThirdApkInfo.ts"],"app/headTurn/HeadTurnViewModel.ts");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -45833,6 +45893,22 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.BasicMotionModel = BasicMotionModel;
 },"system_2d01160272669884793b18983a46dcd0_app_basicMotion_BasicMotionModel.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_initializerDefineProperty.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_applyDecoratedDescriptor.js","node_modules_@babel_runtime_helpers_initializerWarningHelper.js","node_modules_mobx_lib_mobx.module.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts"],"app/basicMotion/BasicMotionModel.ts");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.ThirdApkInfoLocal = exports.ThirdApkInfo = void 0;
+  var ThirdApkInfo;
+  exports.ThirdApkInfo = ThirdApkInfo;
+
+  (function (ThirdApkInfo) {
+    ThirdApkInfo["PACKAGE_NAME"] = "com.example.myfirstapp";
+    ThirdApkInfo["MAIN_ACTIVITY"] = "com.example.myfirstapp.MainActivity";
+  })(ThirdApkInfo || (exports.ThirdApkInfo = ThirdApkInfo = {}));
+
+  var ThirdApkInfoLocal = ThirdApkInfo;
+  exports.ThirdApkInfoLocal = ThirdApkInfoLocal;
+},"system_2d01160272669884793b18983a46dcd0_app_biz_base_ThirdApkInfo.ts",[],"app/biz/base/ThirdApkInfo.ts");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
   Object.defineProperty(exports, "__esModule", {
@@ -45983,9 +46059,11 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/getPrototypeOf"));
 
-  var _orionosEveCore = _$$_REQUIRE(_dependencyMap[6], "orionos-eve-core");
+  var _ThirdApkInfo = _$$_REQUIRE(_dependencyMap[6], "../biz/base/ThirdApkInfo");
 
-  var _StandardFaceTrackModel = _$$_REQUIRE(_dependencyMap[7], "./StandardFaceTrackModel");
+  var _orionosEveCore = _$$_REQUIRE(_dependencyMap[7], "orionos-eve-core");
+
+  var _StandardFaceTrackModel = _$$_REQUIRE(_dependencyMap[8], "./StandardFaceTrackModel");
 
   function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
 
@@ -46048,7 +46126,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           _this.return_obj.code = event.status;
           var result = JSON.stringify(_this.return_obj);
 
-          _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', result);
+          _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, result);
 
           switch (event.status) {
             case _orionosEveCore.ComponentResultConst.RESULT_TIMEOUT:
@@ -46101,7 +46179,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(_orionosEveCore.BaseViewModel);
 
   exports.StandardFaceTrackViewModel = StandardFaceTrackViewModel;
-},"system_2d01160272669884793b18983a46dcd0_app_standardFaceTrack_StandardFaceTrackViewModel.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts","system_2d01160272669884793b18983a46dcd0_app_standardFaceTrack_StandardFaceTrackModel.ts"],"app/standardFaceTrack/StandardFaceTrackViewModel.ts");
+},"system_2d01160272669884793b18983a46dcd0_app_standardFaceTrack_StandardFaceTrackViewModel.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","system_2d01160272669884793b18983a46dcd0_app_biz_base_ThirdApkInfo.ts","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts","system_2d01160272669884793b18983a46dcd0_app_standardFaceTrack_StandardFaceTrackModel.ts"],"app/standardFaceTrack/StandardFaceTrackViewModel.ts");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -46212,6 +46290,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _orionosEveCore = _$$_REQUIRE(_dependencyMap[6], "orionos-eve-core");
 
   var _ChargeStartModel = _$$_REQUIRE(_dependencyMap[7], "./ChargeStartModel");
+
+  var _ThirdApkInfo = _$$_REQUIRE(_dependencyMap[8], "../biz/base/ThirdApkInfo");
 
   function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
 
@@ -46335,7 +46415,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           _this.return_obj.code = event && event.status;
           var result = JSON.stringify(_this.return_obj);
 
-          _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', result);
+          _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, result);
 
           console.log(TAG, "充电追踪" + JSON.stringify(event));
 
@@ -46455,7 +46535,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(_orionosEveCore.BaseViewModel);
 
   exports.ChargeStartViewModel = ChargeStartViewModel;
-},"system_2d01160272669884793b18983a46dcd0_app_chargeStart_ChargeStartViewModel.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts","system_2d01160272669884793b18983a46dcd0_app_chargeStart_ChargeStartModel.ts"],"app/chargeStart/ChargeStartViewModel.ts");
+},"system_2d01160272669884793b18983a46dcd0_app_chargeStart_ChargeStartViewModel.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts","system_2d01160272669884793b18983a46dcd0_app_chargeStart_ChargeStartModel.ts","system_2d01160272669884793b18983a46dcd0_app_biz_base_ThirdApkInfo.ts"],"app/chargeStart/ChargeStartViewModel.ts");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -46761,9 +46841,11 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/getPrototypeOf"));
 
-  var _orionosEveCore = _$$_REQUIRE(_dependencyMap[6], "orionos-eve-core");
+  var _ThirdApkInfo = _$$_REQUIRE(_dependencyMap[6], "../biz/base/ThirdApkInfo");
 
-  var _NavigationModel = _$$_REQUIRE(_dependencyMap[7], "./NavigationModel");
+  var _orionosEveCore = _$$_REQUIRE(_dependencyMap[7], "orionos-eve-core");
+
+  var _NavigationModel = _$$_REQUIRE(_dependencyMap[8], "./NavigationModel");
 
   function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
 
@@ -46887,7 +46969,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           _this.return_obj.code = event && event.status;
           var result = JSON.stringify(_this.return_obj);
 
-          _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', result);
+          _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, result);
 
           console.log(TAG, "导航追踪" + JSON.stringify(event));
 
@@ -47007,7 +47089,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(_orionosEveCore.BaseViewModel);
 
   exports.NavigationViewModel = NavigationViewModel;
-},"system_2d01160272669884793b18983a46dcd0_app_navigation_NavigationViewModel.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts","system_2d01160272669884793b18983a46dcd0_app_navigation_NavigationModel.ts"],"app/navigation/NavigationViewModel.ts");
+},"system_2d01160272669884793b18983a46dcd0_app_navigation_NavigationViewModel.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","system_2d01160272669884793b18983a46dcd0_app_biz_base_ThirdApkInfo.ts","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts","system_2d01160272669884793b18983a46dcd0_app_navigation_NavigationModel.ts"],"app/navigation/NavigationViewModel.ts");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -47096,6 +47178,246 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
+  exports.PersonAppearViewModel = void 0;
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/inherits"));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/possibleConstructorReturn"));
+
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/getPrototypeOf"));
+
+  var _ThirdApkInfo = _$$_REQUIRE(_dependencyMap[6], "../biz/base/ThirdApkInfo");
+
+  var _orionosEveCore = _$$_REQUIRE(_dependencyMap[7], "orionos-eve-core");
+
+  var _PersonAppearModel = _$$_REQUIRE(_dependencyMap[8], "./PersonAppearModel");
+
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+  var TAG = 'shadow_opk_for_android personAppearViewModel.ts';
+
+  var PersonAppearViewModel = function (_BaseViewModel) {
+    (0, _inherits2.default)(PersonAppearViewModel, _BaseViewModel);
+
+    var _super = _createSuper(PersonAppearViewModel);
+
+    function PersonAppearViewModel() {
+      var _this;
+
+      (0, _classCallCheck2.default)(this, PersonAppearViewModel);
+      _this = _super.call(this, 'PersonAppear');
+      _this.return_obj = {
+        "command": "",
+        "text": "",
+        "code": -1,
+        "data": "",
+        "messaage": ""
+      };
+
+      _this.onPressStartPersonAppear = function () {
+        _this.mModel.startPersonAppear();
+      };
+
+      _this.onPressFinishPersonAppear = function () {
+        _this.mModel.finishRunning();
+      };
+
+      _this.onFinish = function (event) {
+        _this.mModel.finishRunning();
+
+        if (event && event.status) {
+          _this.return_obj.command = "personAppearAction";
+          _this.return_obj.text = "person appear action";
+          _this.return_obj.code = event && event.status;
+          _this.return_obj.data = event.data ? JSON.stringify(event.data) : "";
+          var result = JSON.stringify(_this.return_obj);
+
+          _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, result);
+
+          console.log(TAG, "人脸检测 onFinish 方法" + JSON.stringify(event));
+
+          switch (event.status) {
+            case _orionosEveCore.ComponentResultConst.RESULT_SUCCESS:
+              console.log('啦啦啦啦1' + event.status);
+
+              _this.mModel.appendResultText('RESULT_SUCCESS(' + event.status + '): 检测成功');
+
+              if (event.data) {
+                var personData = JSON.parse(event.data);
+
+                _this.mModel.appendResultText('姓名：' + (personData.name ? personData.name : '陌生人'));
+
+                _this.mModel.appendResultText('性别：' + (personData.gender === 'female' ? '女' : '男'));
+
+                _this.mModel.appendResultText('年龄：' + personData.age);
+              }
+
+              break;
+
+            case _orionosEveCore.ComponentResultConst.RESULT_TIMEOUT:
+              console.log('啦啦啦啦2' + event.status);
+
+              _this.mModel.appendResultText('RESULT_TIMEOUT(' + event.status + '): 检测超时');
+
+              break;
+
+            case _orionosEveCore.ComponentErrorConst.ERROR_OPEN_PERSON_DETECT_FAILED:
+              console.log('啦啦啦啦3' + event.status);
+
+              _this.mModel.appendResultText('ERROR_PARAMS_REGISTER_ID_INVALID(' + event.status + '): 获取人脸数据失败');
+
+              break;
+
+            default:
+              console.log('啦啦啦啦4' + event.status);
+
+              _this.mModel.appendResultText(event.status + '');
+
+              break;
+          }
+        }
+
+        return true;
+      };
+
+      _this.mModel = new _PersonAppearModel.PersonAppearModel();
+      return _this;
+    }
+
+    (0, _createClass2.default)(PersonAppearViewModel, [{
+      key: "onStart",
+      value: function onStart() {}
+    }, {
+      key: "onStop",
+      value: function onStop() {}
+    }, {
+      key: "isRunning",
+      value: function isRunning() {
+        console.log('检测isRunning方法是否被执行' + this.mModel.getParam());
+        return this.mModel.isRunning();
+      }
+    }, {
+      key: "getParam",
+      value: function getParam() {
+        console.log('啦啦啦5' + this.mModel.getParam());
+        return this.mModel.getParam();
+      }
+    }, {
+      key: "getResultText",
+      value: function getResultText() {
+        return this.mModel.getResultText();
+      }
+    }]);
+    return PersonAppearViewModel;
+  }(_orionosEveCore.BaseViewModel);
+
+  exports.PersonAppearViewModel = PersonAppearViewModel;
+},"system_2d01160272669884793b18983a46dcd0_app_personAppear_PersonAppearViewModel.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","system_2d01160272669884793b18983a46dcd0_app_biz_base_ThirdApkInfo.ts","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts","system_2d01160272669884793b18983a46dcd0_app_personAppear_PersonAppearModel.ts"],"app/personAppear/PersonAppearViewModel.ts");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.PersonAppearModel = void 0;
+
+  var _initializerDefineProperty2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/initializerDefineProperty"));
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/createClass"));
+
+  var _applyDecoratedDescriptor2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/applyDecoratedDescriptor"));
+
+  var _initializerWarningHelper2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/initializerWarningHelper"));
+
+  var _mobx = _$$_REQUIRE(_dependencyMap[6], "mobx");
+
+  var _orionosEveCore = _$$_REQUIRE(_dependencyMap[7], "orionos-eve-core");
+
+  var _class, _descriptor, _descriptor2;
+
+  var PersonAppearModel = (_class = function () {
+    function PersonAppearModel() {
+      (0, _classCallCheck2.default)(this, PersonAppearModel);
+      (0, _initializerDefineProperty2.default)(this, "mIsRunning", _descriptor, this);
+      (0, _initializerDefineProperty2.default)(this, "mResultText", _descriptor2, this);
+      this.mPersonAppearParam = new _orionosEveCore.PersonAppearParam();
+    }
+
+    (0, _createClass2.default)(PersonAppearModel, [{
+      key: "startPersonAppear",
+      value: function startPersonAppear() {
+        this.mPersonAppearParam.personId = undefined;
+        this.mPersonAppearParam.personName = undefined;
+        this.mPersonAppearParam.maxDistance = 3;
+        this.mPersonAppearParam.maxFaceAngleX = 60;
+        this.mPersonAppearParam.isNeedInCompleteFace = false;
+        this.mPersonAppearParam.incompleteFaceCacheTimeout = 3000;
+        this.mPersonAppearParam.isNeedBody = false;
+        this.mPersonAppearParam.isNeedRecognize = true;
+        this.mPersonAppearParam.recognizeTimeout = 2000;
+        this.mPersonAppearParam.isNeedDeletePic = true;
+        this.mPersonAppearParam.appearTimeout = 7000;
+        this.mPersonAppearParam.scene = undefined;
+        this.mIsRunning = true;
+      }
+    }, {
+      key: "finishRunning",
+      value: function finishRunning() {
+        this.mIsRunning = false;
+      }
+    }, {
+      key: "getParam",
+      value: function getParam() {
+        return this.mPersonAppearParam;
+      }
+    }, {
+      key: "isRunning",
+      value: function isRunning() {
+        return this.mIsRunning;
+      }
+    }, {
+      key: "appendResultText",
+      value: function appendResultText(text) {
+        this.mResultText += '\n' + text;
+      }
+    }, {
+      key: "getResultText",
+      value: function getResultText() {
+        return this.mResultText;
+      }
+    }]);
+    return PersonAppearModel;
+  }(), (_descriptor = (0, _applyDecoratedDescriptor2.default)(_class.prototype, "mIsRunning", [_mobx.observable], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: function initializer() {
+      return false;
+    }
+  }), _descriptor2 = (0, _applyDecoratedDescriptor2.default)(_class.prototype, "mResultText", [_mobx.observable], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: function initializer() {
+      return '';
+    }
+  }), (0, _applyDecoratedDescriptor2.default)(_class.prototype, "startPersonAppear", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "startPersonAppear"), _class.prototype), (0, _applyDecoratedDescriptor2.default)(_class.prototype, "finishRunning", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "finishRunning"), _class.prototype), (0, _applyDecoratedDescriptor2.default)(_class.prototype, "appendResultText", [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, "appendResultText"), _class.prototype)), _class);
+  exports.PersonAppearModel = PersonAppearModel;
+},"system_2d01160272669884793b18983a46dcd0_app_personAppear_PersonAppearModel.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_initializerDefineProperty.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_applyDecoratedDescriptor.js","node_modules_@babel_runtime_helpers_initializerWarningHelper.js","node_modules_mobx_lib_mobx.module.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts"],"app/personAppear/PersonAppearModel.ts");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
   exports.HeadTurnVoice = void 0;
 
   var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
@@ -47108,7 +47430,9 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/getPrototypeOf"));
 
-  var _orionosEveCore = _$$_REQUIRE(_dependencyMap[6], "orionos-eve-core");
+  var _ThirdApkInfo = _$$_REQUIRE(_dependencyMap[6], "../biz/base/ThirdApkInfo");
+
+  var _orionosEveCore = _$$_REQUIRE(_dependencyMap[7], "orionos-eve-core");
 
   function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
 
@@ -47146,7 +47470,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             var result_str = JSON.stringify(this.return_obj);
             console.log("语音识别数据信息：" + result_str);
 
-            _orionosEveCore.NLPApkControl.onRobotMessage('com.example.myfirstapp', result_str);
+            _orionosEveCore.NLPApkControl.onRobotMessage(_ThirdApkInfo.ThirdApkInfo.PACKAGE_NAME, result_str);
 
             return true;
         }
@@ -47159,7 +47483,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(_orionosEveCore.BaseVoice);
 
   exports.HeadTurnVoice = HeadTurnVoice;
-},"system_2d01160272669884793b18983a46dcd0_app_demo_HeadTurnVoice.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts"],"app/demo/HeadTurnVoice.ts");
+},"system_2d01160272669884793b18983a46dcd0_app_demo_HeadTurnVoice.ts",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","system_2d01160272669884793b18983a46dcd0_app_biz_base_ThirdApkInfo.ts","system_2d01160272669884793b18983a46dcd0_node_modules_orionos-eve-core_index.ts"],"app/demo/HeadTurnVoice.ts");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -48280,6 +48604,191 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   exports.NavigationView = NavigationView;
 },"system_2d01160272669884793b18983a46dcd0_app_navigation_NavigationView.tsx",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","node_modules_react_index.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","node_modules_mobx-react_native.js"],"app/navigation/NavigationView.tsx");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.PersonAppearView = void 0;
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/createClass"));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/inherits"));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/possibleConstructorReturn"));
+
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/getPrototypeOf"));
+
+  var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[6], "react"));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[7], "react-native");
+
+  var _mobxReact = _$$_REQUIRE(_dependencyMap[8], "mobx-react");
+
+  var _class,
+      _jsxFileName = "/Applications/htdoc/shadow_opk_for_android/app/personAppear/PersonAppearView.tsx";
+
+  function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+  function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+  var _Dimensions$get = _reactNative.Dimensions.get('window'),
+      width = _Dimensions$get.width,
+      height = _Dimensions$get.height;
+
+  var styles = _reactNative.StyleSheet.create({
+    rootView: {
+      flex: 1,
+      backgroundColor: 'white',
+      alignItems: 'center',
+      width: width,
+      height: height
+    },
+    button: {
+      width: '50%',
+      marginBottom: 10
+    },
+    resultArea: {
+      flex: 1,
+      width: '90%',
+      marginBottom: 20,
+      borderWidth: 2,
+      borderRadius: 10,
+      borderColor: 'dodgerblue',
+      alignItems: 'center'
+    },
+    resultScroll: {
+      width: '90%',
+      height: '100%'
+    },
+    resultText: {
+      fontSize: 12,
+      alignSelf: 'center',
+      width: '100%',
+      height: '100%'
+    }
+  });
+
+  var PersonAppearView = (0, _mobxReact.observer)(_class = function (_Component) {
+    (0, _inherits2.default)(PersonAppearView, _Component);
+
+    var _super = _createSuper(PersonAppearView);
+
+    function PersonAppearView() {
+      var _this;
+
+      (0, _classCallCheck2.default)(this, PersonAppearView);
+
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      _this = _super.call.apply(_super, [this].concat(args));
+
+      _this.setScroll = function (scroll) {
+        _this.mScroll = scroll;
+      };
+
+      _this.onContentSizeChange = function () {
+        _this.mScroll && _this.mScroll.scrollToEnd();
+      };
+
+      return _this;
+    }
+
+    (0, _createClass2.default)(PersonAppearView, [{
+      key: "render",
+      value: function render() {
+        if (!this.props.viewModel) {
+          return null;
+        }
+
+        return _react.default.createElement(_reactNative.View, {
+          style: styles.rootView,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 88,
+            columnNumber: 13
+          }
+        }, _react.default.createElement(_reactNative.View, {
+          style: styles.button,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 89,
+            columnNumber: 17
+          }
+        }, _react.default.createElement(_reactNative.Button, {
+          color: 'dodgerblue',
+          title: '开始人脸检测',
+          onPress: this.props.viewModel.onPressStartPersonAppear,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 90,
+            columnNumber: 21
+          }
+        })), _react.default.createElement(_reactNative.View, {
+          style: styles.button,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 95,
+            columnNumber: 17
+          }
+        }, _react.default.createElement(_reactNative.Button, {
+          color: 'dodgerblue',
+          title: '停止人脸检测',
+          onPress: this.props.viewModel.onPressFinishPersonAppear,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 96,
+            columnNumber: 21
+          }
+        })), _react.default.createElement(_reactNative.SafeAreaView, {
+          style: styles.resultArea,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 101,
+            columnNumber: 17
+          }
+        }, _react.default.createElement(_reactNative.ScrollView, {
+          ref: this.setScroll,
+          onContentSizeChange: this.onContentSizeChange,
+          style: styles.resultScroll,
+          showsVerticalScrollIndicator: false,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 102,
+            columnNumber: 21
+          }
+        }, _react.default.createElement(_reactNative.Text, {
+          style: styles.resultText,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 107,
+            columnNumber: 25
+          }
+        }, this.props.viewModel.getResultText()))));
+      }
+    }]);
+    return PersonAppearView;
+  }(_react.Component)) || _class;
+
+  exports.PersonAppearView = PersonAppearView;
+},"system_2d01160272669884793b18983a46dcd0_app_personAppear_PersonAppearView.tsx",["node_modules_@babel_runtime_helpers_interopRequireDefault.js","node_modules_@babel_runtime_helpers_classCallCheck.js","node_modules_@babel_runtime_helpers_createClass.js","node_modules_@babel_runtime_helpers_inherits.js","node_modules_@babel_runtime_helpers_possibleConstructorReturn.js","node_modules_@babel_runtime_helpers_getPrototypeOf.js","node_modules_react_index.js","node_modules_react-native_Libraries_react-native_react-native-implementation.js","node_modules_mobx-react_native.js"],"app/personAppear/PersonAppearView.tsx");
 __d(function(global, require, _aUnused, _bUnused, module, exports, _cUnused) {
   module.exports = {
 	"name": "shadow_opk_for_android",
