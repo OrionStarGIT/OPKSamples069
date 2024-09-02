@@ -54,6 +54,13 @@ export class PersonAppearViewModel extends BaseViewModel {
     }
 
     /**
+     * 根据传递参数开始人脸识别
+     */
+    public startPersonAppearCondition = (personId: number, personName: string, maxDistance: number, maxFaceAngleX: number, isNeedInCompleteFace: boolean, incompleteFaceCacheTimeout: number, isNeedBody: boolean, isNeedRecognize: boolean, recognizeTimeout: number, appearTimeout: number): void => {
+        this.mModel.startPersonAppearCondition(personId, personName, maxDistance, maxFaceAngleX, isNeedInCompleteFace, incompleteFaceCacheTimeout, isNeedBody, isNeedRecognize, recognizeTimeout, appearTimeout);
+    };
+
+    /**
      * 点击开始人脸识别
      */
     public onPressStartPersonAppear = (): void => {
@@ -72,7 +79,7 @@ export class PersonAppearViewModel extends BaseViewModel {
      * @param event
      */
     public onFinish = (event?: ComponentEvent): boolean => {
-       
+
         this.mModel.finishRunning();
         if (event && event.status) {
             this.return_obj.command = "personAppearAction";
